@@ -229,6 +229,7 @@ Distributed under the no License. See LICENSE.txt for more information.
 ## :handshake: Contact
 
 Andreea Jinga - andreea.jinga@yahoo.com
+
 Mihai-Alexandru Tomescu - tomihai15@yahoo.com
 
 Project Link: [https://github.com/AndreeaJinga/WADO.git](https://github.com/AndreeaJinga/WADO.git)
