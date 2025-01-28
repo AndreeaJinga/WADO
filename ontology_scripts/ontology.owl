@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://example.org/web-dev-ontology#"
+  xml:base="http://example.org/web-dev-ontology"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+
+
+  <!-- Ontology Metadata -->
+  <owl:Ontology rdf:about="http://example.org/web-dev-ontology" />
+
+
+  <!-- Classes -->
+  <owl:Class rdf:about="#ProgrammingLanguage">
+    <rdfs:label>Programming Language</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="#ProgrammingParadigm">
+    <rdfs:label>Programming Paradigm</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="#SoftwareArchitecture">
+    <rdfs:label>Software Architecture</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="#License">
+    <rdfs:label>License</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="#OperatingSystem">
+    <rdfs:label>Operating System</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Compiler">
+    <rdfs:label>Compiler</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Interpreter">
+    <rdfs:label>Interpreter</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="#ApplicationServer">
+    <rdfs:label>Application Server</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Framework">
+    <rdfs:label>Framework</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="#ORMFramework">
+    <rdfs:subClassOf rdf:resource="#Framework" />
+    <rdfs:label>ORM Framework</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="#SPAFramework">
+    <rdfs:subClassOf rdf:resource="#Framework" />
+    <rdfs:label>SPA Framework</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="#FrontendFramework">
+    <rdfs:subClassOf rdf:resource="#Framework" />
+    <rdfs:label>Frontend Framework</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="#BackendFramework">
+    <rdfs:subClassOf rdf:resource="#Framework" />
+    <rdfs:label>Backend Framework</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="#TemplateEngine">
+    <rdfs:subClassOf rdf:resource="#Framework" />
+    <rdfs:label>Template Engine</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="#MachineLearningFramework">
+    <rdfs:subClassOf rdf:resource="#Framework" />
+    <rdfs:label>Machine Learning Framework</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="#TestingFramework">
+    <rdfs:subClassOf rdf:resource="#Framework" />
+    <rdfs:label>Testing Framework</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="#AOPFramework">
+    <rdfs:subClassOf rdf:resource="#Framework" />
+    <rdfs:label>AOP Framework</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="#SDK">
+    <rdfs:label>SDK</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Library">
+    <rdfs:label>Library</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="#IDE">
+    <rdfs:label>IDE</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Organization">
+    <rdfs:label>Organization</rdfs:label>
+  </owl:Class>
+
+
+  <!-- Object Properties -->
+  <owl:ObjectProperty rdf:about="#isLicensedUnder">
+    <rdfs:domain rdf:resource="#Framework" />
+    <rdfs:range rdf:resource="#License" />
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="#hasAuthor">
+    <rdfs:domain rdf:resource="#Framework" />
+    <rdfs:range rdf:resource="#Organization" />
+  </owl:ObjectProperty>
+
+
+  <!-- Data Properties -->
+  <owl:DatatypeProperty rdf:about="#hasName">
+    <rdfs:domain rdf:resource="#ProgrammingLanguage" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#hasVersion">
+    <rdfs:domain rdf:resource="#Framework" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#hasDescription">
+    <rdfs:domain rdf:resource="#Framework" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#hasReleaseDate">
+    <rdfs:domain rdf:resource="#Framework" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
+  </owl:DatatypeProperty>
+
+</rdf:RDF>
