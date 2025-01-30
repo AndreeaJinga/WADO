@@ -4,7 +4,7 @@ from dotenv import load_dotenv # type: ignore
 from rdflib import Graph, Namespace, URIRef, RDF, RDFS, Literal, XSD # type: ignore
 from datetime import datetime
 
-FILE_VERSION = 1
+FILE_VERSION = 2
 
 load_dotenv()
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
@@ -105,6 +105,7 @@ def insert_repos_into_ontology(repos, topic: str):
             if not (license_uri, RDF.type, WEBDEV.License) in g:
                 print(f"Adding new license: {license_str}")
                 g.add((license_uri, RDF.type, WEBDEV.License))
+                g.add((license_uri, RDFS.label, Literal(license_str, datatype=XSD.string)))
 
             g.add((repo_uri, WEBDEV.isLicenseUnder, license_uri))
 
@@ -116,6 +117,7 @@ def insert_repos_into_ontology(repos, topic: str):
             if not (primary_lang_uri, RDF.type, WEBDEV.ProgrammingLanguage) in g:
                 print(f"Adding new ProgrammingLanguage: {primary_lang_str}")
                 g.add((primary_lang_uri, RDF.type, WEBDEV.ProgrammingLanguage))
+                g.add((primary_lang_uri, RDFS.label, Literal(primary_lang_str, datatype=XSD.string)))
 
             g.add((repo_uri, WEBDEV.usesLanguage, primary_lang_uri))
 
