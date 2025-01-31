@@ -4,14 +4,14 @@ from dotenv import load_dotenv # type: ignore
 from rdflib import Graph, Namespace, URIRef, RDF, RDFS, Literal, XSD # type: ignore
 from datetime import datetime
 
-FILE_VERSION = 2
+FILE_VERSION = 1
 
 load_dotenv()
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 if not GITHUB_TOKEN:
     raise ValueError("Missing GITHUB_TOKEN in .env")
 
-BASE_URI = "http://example.org/web-dev-ontology#"
+BASE_URI = "http://example.org/"
 WEBDEV = Namespace(BASE_URI)
 
 ontology_file = f"v{FILE_VERSION}.owl"
@@ -82,7 +82,7 @@ def insert_repos_into_ontology(repos, topic: str):
     for repo in repos:
         safe_name = safe_string(repo["name"])
 
-        repo_uri = URIRef(f"{BASE_URI}repo_{topic}_{safe_name}")
+        repo_uri = URIRef(f"{BASE_URI}{topic}#{safe_name}")
 
         g.add((repo_uri, RDF.type, getattr(WEBDEV, topic)))
         g.add((repo_uri, RDFS.label, Literal(repo["name"], datatype=XSD.string)))
