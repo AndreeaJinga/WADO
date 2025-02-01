@@ -1,0 +1,53 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
+@Component({
+  selector: 'app-concept-page',
+  imports: [CommonModule, FormsModule, HttpClientModule],
+  templateUrl: './concept-page.component.html',
+  styleUrls: ['./concept-page.component.css'],
+  standalone: true,
+})
+export class ConceptPageComponent {
+  user_url: string = '';
+  conceptUri: string = '';
+  links: { key: string, value: unknown }[] = [];
+  errorMessage: string = '';  // if any
+
+  constructor(private http: HttpClient) { }
+
+  submitUrl(): void {
+    if (!this.user_url.trim()) {
+      this.errorMessage = 'Please enter a valid URL!';
+      return;
+    }
+
+    this.http.post<any>('http://TODOyour-backend-url/api/concept', { url: this.user_url })
+      .subscribe({
+        next: (response) => {
+          this.extractData(response);
+          this.errorMessage = '';  // Clear errors
+        },
+        error: () => {
+          this.errorMessage = 'Error processing URL. Try again!';
+          this.conceptUri = '';
+          this.links = [];
+        }
+      });
+  }
+
+  extractData(data: any): void {
+    if (!data || !data.concept_uri || !data.info) {
+      this.errorMessage = 'Invalid data format';
+      return;
+    }
+
+    this.conceptUri = data.concept_uri;
+
+    this.links = Object.entries(data.info)
+      .filter(([_, value]) => typeof value === 'string' && value.startsWith('http'))
+      .map(([key, value]) => ({ key, value }));  // Convert into an array of objects
+  }
+}

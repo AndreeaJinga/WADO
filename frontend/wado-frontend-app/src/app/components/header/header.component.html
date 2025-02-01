@@ -1,0 +1,15 @@
+<header class="header">
+    <div class="logo">WadoApp</div>
+    <div class="nav-buttons">
+        <button routerLink="/welcome">Home page</button>
+
+        <ng-container *ngIf="userEmail; else loginButton">
+            <span class="user-email">{{ userEmail }}</span>
+            <button (click)="logout()">Logout</button>
+        </ng-container>
+
+        <ng-template #loginButton>
+            <button routerLink="/login">Login</button>
+        </ng-template>
+    </div>
+</header>
