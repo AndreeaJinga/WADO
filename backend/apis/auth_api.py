@@ -4,10 +4,6 @@ from dotenv import load_dotenv
 
 auth_blueprint = Blueprint('auth', __name__)
 
-# def init_user_service():
-#     db_path = current_app.config['DATABASE']
-#     current_app.config['USER_SERVICE'] = UserService(db_path)
-
 
 def token_required(func):
     def wrapper(*args, **kwargs):
