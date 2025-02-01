@@ -55,28 +55,3 @@ def login():
         return jsonify({"token": token}), 200
     else:
         return jsonify({"message": "Invalid credentials"}), 401
-
-
-@auth_blueprint.route('/preferences', methods=['POST'])
-@token_required
-def save_preferences():
-    auth_header = request.headers.get('Authorization')
-    if not auth_header or not auth_header.startswith("Bearer "):
-        return jsonify({"message": "Missing or invalid Authorization header"}), 401
-
-    token = auth_header.split()[1]
-    user_service: UserService = current_app.config['USER_SERVICE']
-    username = user_service.validate_token(token)
-    if not username:
-        return jsonify({"message": "Invalid or expired token"}), 401
-
-    prefs_data = request.json.get('preferences')
-    if prefs_data is None:
-        return jsonify({"message": "No preferences provided"}), 400
-
-    updated = user_service.update_preferences(username, prefs_data)
-    if updated:
-        return jsonify({"message": "Preferences updated successfully"}), 200
-    else:
-        return jsonify({"message": "User not found"}), 404
-

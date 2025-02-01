@@ -7,6 +7,7 @@ from apis.auth_api import auth_blueprint
 from apis.ontology_api import ontology_blueprint
 from services.ontology_service import OntologyService
 from services.user_service import UserService
+from services.email_service import EmailService
 
 config = dotenv_values(".env")
 
@@ -18,8 +19,7 @@ def create_database(db_path):
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT UNIQUE NOT NULL,
-            password TEXT NOT NULL,
-            preferences TEXT
+            password TEXT NOT NULL
         )
     """)
     conn.commit()
@@ -39,6 +39,11 @@ def create_app():
     create_database(db_path)
     app.config['USER_SERVICE'] = UserService(db_path)
     app.config['ONTOLOGY_SERVICE'] = OntologyService(config.get('ontology_path'))
+    smtp_server = config.get('SMTP_SERVER')
+    smtp_port = config.get('SMTP_PORT')
+    smtp_user = config.get('SMTP_USER')
+    smtp_pass = config.get('SMTP_PASS')
+    app.config['EMAIL_SERVICE'] = EmailService(smtp_server, smtp_port, smtp_user, smtp_pass)
     
     # 3) Register the blueprints
     app.register_blueprint(auth_blueprint, url_prefix='/api/auth')

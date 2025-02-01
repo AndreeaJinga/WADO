@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request, current_app
 from services.ontology_service import OntologyService
 from services.user_service import UserService
+from services.email_service import EmailService
 
 ontology_blueprint = Blueprint('ontology', __name__)
 
@@ -42,7 +43,6 @@ def get_class_instances(class_uri):
 
 
 @ontology_blueprint.route('/concept', methods=['GET'])
-@token_required
 def get_concept_info():
     """
     GET /api/ontology/concept?uri=<concept_uri>
@@ -72,4 +72,12 @@ def run_sparql():
     if results is None:
         return jsonify({"message": "Error executing SPARQL query"}), 500
     
-    return jsonify({"results": results}), 200
+    json_results = jsonify({"results": results})
+    if email_bool:
+        email_service: EmailService = current_app.config['EMAIL_SERVICE']
+        auth_header = request.headers.get('Authorization')
+        token = auth_header.split()[1]
+        user_service: UserService = current_app.config['USER_SERVICE']
+        username = user_service.validate_token(token)
+        email_service.send_email(username,"WADO app query", f"{sparql_query}\n\n{results}")
+    return json_results, 200

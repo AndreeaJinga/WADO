@@ -8,18 +8,18 @@ class UserRepository:
         self.db_path = db_path
 
 
-    def create_user(self, username, password):
+    def create_user(self, email, password):
         """Insert a new user into the DB. Returns the created User object or None if fail."""
         try:
             conn = sqlite3.connect(self.db_path)
             cursor = conn.cursor()
             cursor.execute(
-                "INSERT INTO users (username, password, preferences) VALUES (?, ?, ?)",
-                (username, password))
+                "INSERT INTO users (username, password) VALUES (?, ?)",
+                (email, password))
             conn.commit()
             user_id = cursor.lastrowid
             conn.close()
-            return User(user_id, username, password)
+            return User(user_id, email, password)
         except sqlite3.IntegrityError:
             return None
 
@@ -28,7 +28,7 @@ class UserRepository:
         """Return a User object if the username exists, otherwise None."""
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
-        cursor.execute("SELECT id, username, password FROM users WHERE username = ?", (username))
+        cursor.execute("SELECT id, username, password FROM users WHERE username = ?", (username,))
         row = cursor.fetchone()
         conn.close()
         if row:
