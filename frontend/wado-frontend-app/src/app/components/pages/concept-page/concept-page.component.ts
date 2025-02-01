@@ -24,7 +24,7 @@ export class ConceptPageComponent {
       return;
     }
 
-    this.http.post<any>('http://TODOyour-backend-url/api/concept', { url: this.user_url })
+    this.http.post<any>('http://127.0.0.1:5000/api/concept', { url: this.user_url })
       .subscribe({
         next: (response) => {
           this.extractData(response);

@@ -25,11 +25,11 @@ def token_required(func):
 @auth_blueprint.route('/register', methods=['POST'])
 def register():
     data = request.json
-    username = data.get('username')
+    username = data.get('email')
     password = data.get('password')
 
     if not username or not password:
-        return jsonify({"message": "Username and password required"}), 400
+        return jsonify({"message": "email and password required"}), 400
 
     user_service: UserService = current_app.config['USER_SERVICE']
     user = user_service.register(username, password)
@@ -42,7 +42,7 @@ def register():
 @auth_blueprint.route('/login', methods=['POST'])
 def login():
     data = request.json
-    username = data.get('username')
+    username = data.get('email')
     password = data.get('password')
 
     user_service: UserService = current_app.config['USER_SERVICE']

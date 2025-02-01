@@ -24,7 +24,7 @@ export class LoginComponent {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      this.http.post<{ token: string }>('http://TODOyour-backend-url/api/auth/login', this.loginForm.value)
+      this.http.post<{ token: string }>('http://127.0.0.1:5000/api/auth/login', this.loginForm.value)
         .subscribe({
           next: (response) => {
             localStorage.setItem('token', response.token); // Store token
