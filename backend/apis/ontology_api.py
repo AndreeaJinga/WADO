@@ -5,14 +5,6 @@ from services.email_service import EmailService
 
 ontology_blueprint = Blueprint('ontology', __name__)
 
-
-# @ontology_blueprint.before_app_request
-# def init_ontology_service():
-#     """Load the ontology once when the app starts."""
-#     ontology_path = 'ontology.owl'  # Adjust the path if needed
-#     current_app.config['ONTOLOGY_SERVICE'] = OntologyService(ontology_path)
-
-
 def token_required(func):
     def wrapper(*args, **kwargs):
         auth_header = request.headers.get('Authorization')
@@ -31,7 +23,6 @@ def token_required(func):
 
 
 @ontology_blueprint.route('/class/<path:class_uri>/instances', methods=['GET'])
-@token_required
 def get_class_instances(class_uri):
     """
     Example call: GET /api/ontology/class/http://example.org/MyClass/instances
@@ -40,6 +31,36 @@ def get_class_instances(class_uri):
     ontology_service: OntologyService = current_app.config['ONTOLOGY_SERVICE']
     instances = ontology_service.get_instances_of_class(class_uri)
     return jsonify({"class_uri": class_uri, "instances": instances})
+
+
+@ontology_blueprint.route('/frameworks', methods=['GET'])
+def get_frameworks_for_language():
+    ontology_service: OntologyService = current_app.config['ONTOLOGY_SERVICE']
+    
+    language_param = request.args.get('language')
+    if not language_param:
+        return jsonify({"message": "Missing 'language' query parameter"}), 400
+
+    frameworks = ontology_service.get_frameworks_for_language(language_param)
+    return jsonify({
+        "language": language_param,
+        "frameworks": frameworks
+    }), 200
+    
+    
+@ontology_blueprint.route('/classes', methods=['GET'])
+def get_classes():
+    ontology_service: OntologyService = current_app.config['ONTOLOGY_SERVICE']
+    
+    response = ontology_service.get_my_classes()
+    return jsonify(response), 200    
+    
+@ontology_blueprint.route('/languages', methods=['GET'])
+def get_languages():
+    ontology_service: OntologyService = current_app.config['ONTOLOGY_SERVICE']
+    uri= current_app.config['BASE_URL']+"ProgrammingLanguage"
+    languages = ontology_service.get_instances_of_class(uri)
+    return jsonify({"languages": languages})
 
 
 @ontology_blueprint.route('/concept', methods=['GET'])

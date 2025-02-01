@@ -1,7 +1,7 @@
 import os
 from rdflib import Graph, URIRef, RDF
 from rdflib.plugins.sparql.processor import SPARQLResult
-
+from flask import current_app
 
 class OntologyService:
     def __init__(self, ontology_path):
@@ -27,6 +27,28 @@ class OntologyService:
         return concept_info
 
 
+    def get_frameworks_for_language(self, language):
+        """retunrs the frameworks for a given language"""
+        frameworks = []
+
+        query = f"""
+        PREFIX ns1: <{current_app.config["BASE_URL"]}> 
+        SELECT ?Framework WHERE {{ 
+            ?Framework ns1:usesLanguage <{current_app.config["BASE_URL"]}ProgrammingLanguage#{language}> .
+            ?Framework rdf:type ns1:Framework .
+            }}
+        """
+        result = None
+        try:
+            result = self.graph.query(query)
+            for row in result:
+                frameworks.append(str(row[0]))
+        except Exception as e:
+            print(f"SPARQL query error: {e}")
+        return frameworks
+        
+        
+        
     def run_sparql_query(self, sparql_query):
         """
         Execute the SPARQL query string on the RDF graph and return a list of dicts.
@@ -46,3 +68,12 @@ class OntologyService:
         except Exception as e:
             print(f"SPARQL query error: {e}")
             return None
+        
+    def get_my_classes(self):
+        classes = set()
+        for s in self.graph.subjects(RDF.type):
+            if str(s).startswith(current_app.config['BASE_URL']):
+                if "#" in str(s):
+                    classes.add(str(s).split("#")[0])
+        classes = list(classes)
+        return classes
