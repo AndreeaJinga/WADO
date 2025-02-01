@@ -8,6 +8,8 @@ from apis.ontology_api import ontology_blueprint
 from services.ontology_service import OntologyService
 from services.user_service import UserService
 from services.email_service import EmailService
+from flask_cors import CORS
+
 
 config = dotenv_values(".env")
 
@@ -31,13 +33,7 @@ def create_app():
     app.config['SECRET_KEY'] = config.get('SECRET_KEY')
     app.config['JWT_SECRET_KEY'] = config.get('JWT_SECRET_KEY')
     app.config['BASE_URL'] = config.get('BASE_URL')
-    
-    @app.after_request
-    def after_request(response):
-        response.headers.add('Access-Control-Allow-Origin', '*')
-        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-        response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
-        return response
+    CORS(app, resources={r"/*": {"origins": "*"}})
     
     # Initialize the DB path
     db_path = os.path.join(os.path.dirname(__file__), 'users.db')
