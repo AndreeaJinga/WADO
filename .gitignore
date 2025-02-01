@@ -1,2 +1,6 @@
 */.env
 *.pyc
+
+# to delete later:
+frontend/*
+scholarly/index.html

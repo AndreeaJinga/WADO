@@ -1,87 +1,78 @@
 import rdflib
-from rdflib import Graph, URIRef, Literal, RDFS, RDF
+from rdflib import Graph, URIRef, Literal, RDFS, RDF, Namespace, XSD
 import requests
 
 DBPEDIA_SPARQL = "https://dbpedia.org/sparql"
 PROGRAMMING_LANGUAGE_CLASS = rdflib.URIRef("http://example.org/ProgrammingLanguage")
 
-def query_dbpedia_for_label(label, lang="en"):
-    # sparql_query = f"""
-    # PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    # SELECT ?resource
-    # WHERE {{
-    #   ?resource rdfs:label "{label}"@{lang} .
-    #   FILTER (STRSTARTS(STR(?resource), "http://dbpedia.org/resource/"))
-    # }}
-    # LIMIT 1
-    # """
-    sparql_query = f"""
-        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-        PREFIX dbo:  <http://dbpedia.org/ontology/>
-        PREFIX dbp:  <http://dbpedia.org/property/>
-        PREFIX dct:  <http://purl.org/dc/terms/>
+BASE_URI = "http://example.org/"
+WEBDEV = Namespace(BASE_URI)
 
-        SELECT ?language 
-            ?abstract 
-            ?designer 
-            ?paradigm 
-            ?influencedBy 
-            ?influenced 
-            ?typing 
-            ?latestReleaseVersion
-        WHERE {{
-            BIND(<http://dbpedia.org/resource/{label}> AS ?language) .
+def query_dbpedia_for_label(label, lang="en"):
+    sparql_query = f"""
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX dbo:  <http://dbpedia.org/ontology/>
+    PREFIX dbp:  <http://dbpedia.org/property/>
+    PREFIX dct:  <http://purl.org/dc/terms/>
+
+    SELECT ?language ?abstract ?designer ?paradigm ?developer ?year
+    WHERE {{
+        BIND(<http://dbpedia.org/resource/{label}> AS ?language)
+
+        OPTIONAL {{
+            ?language dbo:abstract ?abstract .
+            FILTER (LANG(?abstract) = "en")
         }}
-    
+
+        OPTIONAL {{ ?language dbo:designer ?designer . }}
+        OPTIONAL {{ ?language dbp:designer ?designer . }}
+
+        OPTIONAL {{ ?language dbo:paradigm ?paradigm . }}
+        OPTIONAL {{ ?language dbp:paradigm ?paradigm . }}
+
+        OPTIONAL {{ ?language dbo:developer ?developer . }}
+        OPTIONAL {{ ?language dbp:developer ?developer . }}
+
+        OPTIONAL {{ ?language dbo:released ?year . }}
+        OPTIONAL {{ ?language dbo:year ?year . }}
+    }}
     """
     
     response = requests.get(DBPEDIA_SPARQL, params={'query': sparql_query, 'format': 'application/sparql-results+json'})
     data = response.json()
-    print("heeere")
-    print(data)
-    return None
     results = data['results']['bindings']
     
     if results:
-        return results[0]['resource']['value']
+        return results[0]
     return None
 
 
-def get_dbpedia_triples(resource_uri, limit=5):
-    """
-    Retrieves the first `limit` properties of the given DBpedia resource URI.
-    Returns a list of (subject, predicate, object) in string or literal form.
-    """
-    sparql_query = f"""
-    SELECT ?p ?o
-    WHERE {{
-      <{resource_uri}> ?p ?o .
-    }}
-    LIMIT {limit}
-    """
-    response = requests.get(DBPEDIA_SPARQL, params={'query': sparql_query, 'format': 'json'})
-    data = response.json()
-    results = data['results']['bindings']
+def process_dbpedia_resource(resource_name, resource, g):
+    resource_uri = URIRef(f"{BASE_URI}ProgrammingLanguage#{resource_name}")
+    language_uri = resource.get("language", {}).get("value")
+    g.add((resource_uri, WEBDEV.hasURL, Literal(language_uri, datatype=XSD.anyURI)))
     
-    triples = []
-    for binding in results:
-        p = binding['p']['value']  # predicate is always a URI
-        o_info = binding['o']
+    abstract = resource.get("abstract", {}).get("value") if "abstract" in resource else None
+    if abstract:
+        g.add((resource_uri, WEBDEV.hasDescription, Literal(abstract, datatype=XSD.string)))
+    
+    designer = resource.get("designer", {}).get("value") if "designer" in resource else None
+    if designer:
+        g.add((resource_uri, WEBDEV.hasDesigner, Literal(designer, datatype=XSD.string)))
         
-        # If 'o' is a URI, we'll keep it as a URI, else as a literal
-        if o_info['type'] == 'uri':
-            o = o_info['value']  # e.g. http://dbpedia.org/resource/XYZ
-        else:
-            # It's a literal or typed literal
-            o = o_info['value']
-        triples.append((resource_uri, p, o))
-    
-    return triples
+    developer = resource.get("developer", {}).get("value") if "developer" in resource else None
+    if developer:
+        g.add((resource_uri, WEBDEV.hasDeveloper, Literal(developer, datatype=XSD.string)))
+        
+    year = resource.get("year", {}).get("value") if "year" in resource else None
+    if year:
+        g.add((resource_uri, WEBDEV.hasReleaseYear, Literal(year, datatype=XSD.gYear)))
+            
 
 def main():
     g = rdflib.Graph()
     g.parse("v2.owl", format="xml")
-    
+
     for pl_instance in g.subjects(RDF.type, PROGRAMMING_LANGUAGE_CLASS):
         print(f"Processing instance: {pl_instance}")
         label_value = None
@@ -94,31 +85,15 @@ def main():
             continue
 
         dbpedia_uri = query_dbpedia_for_label(label_value)
-        if not dbpedia_uri:
-            print(f"No DBpedia resource found for '{label_value}'.")
-            continue
-        
-        print(f"Found DBpedia resource: {dbpedia_uri}")
-        return None
+        if dbpedia_uri:
+            print(f"Found DBpedia resource: {label_value}")
+            
+            process_dbpedia_resource(label_value, dbpedia_uri, g)
+            
 
-    #     new_triples = get_dbpedia_triples(dbpedia_uri, limit=5)
+    g.serialize(destination="updated_ontology.owl", format="xml")
+    print("Updated ontology saved to updated_ontology.owl")
 
-    #     # 6. Insert those triples into the local graph
-    #     for s, p, o in new_triples:
-    #         s_node = URIRef(s)
-    #         p_node = URIRef(p)
-
-    #         # Check if 'o' looks like a URI
-    #         if isinstance(o, str) and o.startswith("http"):
-    #             o_node = URIRef(o)
-    #         else:
-    #             # Otherwise treat as literal
-    #             o_node = Literal(o)
-
-    #         g.add((s_node, p_node, o_node))
-    
-    # g.serialize(destination="updated_ontology.owl", format="xml")
-    # print("Updated ontology saved to updated_ontology.owl")
 
 if __name__ == "__main__":
     main()
