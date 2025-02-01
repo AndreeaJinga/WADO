@@ -20,7 +20,7 @@ g.parse(ontology_file, format="xml")
 
 
 def safe_string(uri_str):
-    safe_uri = uri_str.replace(" ", "_")        # avoid spaces
+    safe_uri = uri_str.replace(" ", "-")        # avoid spaces
     safe_uri = safe_uri.replace("'", "")        # avoid quotes
     safe_uri = safe_uri.replace('"', "")        # avoid double-quotes
     safe_uri = safe_uri.replace("#", "_sharp")  # avoid hashtag
@@ -99,7 +99,7 @@ def insert_repos_into_ontology(repos, topic: str):
 
         license_str =  repo.get("licenseInfo", {})
         if license_str != None:
-            license_str = safe_string(license_str.get("name").lower())
+            license_str = safe_string(license_str.get("name"))
             license_uri = URIRef(f"http://example.org/License#{license_str}")  
 
             if not (license_uri, RDF.type, WEBDEV.License) in g:
@@ -111,7 +111,7 @@ def insert_repos_into_ontology(repos, topic: str):
 
         primary_lang_str = repo.get("primaryLanguage", {})
         if primary_lang_str != None:
-            primary_lang_str = safe_string(primary_lang_str.get("name").lower())
+            primary_lang_str = safe_string(primary_lang_str.get("name"))
             primary_lang_uri = URIRef(f"http://example.org/ProgrammingLanguage#{primary_lang_str}")  
 
             if not (primary_lang_uri, RDF.type, WEBDEV.ProgrammingLanguage) in g:

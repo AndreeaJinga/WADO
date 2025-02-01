@@ -1,1 +1,5 @@
 */.env
+
+# to delete later:
+frontend/*
+scholarly/index.html
