@@ -25,7 +25,7 @@ export class RegisterComponent {
 
   onSubmit(): void {
     if (this.registerForm.valid) {
-      this.http.post('http://TODObackend-url/api/auth/register', this.registerForm.value)
+      this.http.post('http://127.0.0.1:5000/api/auth/register', this.registerForm.value)
         .subscribe({
           next: () => {
             this.message = 'Registration successful!';

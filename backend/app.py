@@ -32,6 +32,13 @@ def create_app():
     app.config['JWT_SECRET_KEY'] = config.get('JWT_SECRET_KEY')
     app.config['BASE_URL'] = config.get('BASE_URL')
     
+    @app.after_request
+    def after_request(response):
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+        response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+        return response
+    
     # Initialize the DB path
     db_path = os.path.join(os.path.dirname(__file__), 'users.db')
     app.config['DATABASE'] = db_path
