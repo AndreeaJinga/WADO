@@ -1,29 +1,52 @@
-<div class="query-container">
-    <label for="query">Enter Query:</label>
-    <textarea id="query" [(ngModel)]="query" rows="6" placeholder="Write your SPARQL query here..."></textarea>
-    <button (click)="submitQuery()">Submit</button>
-  
-    <button class="email-btn" (click)="sendEmail()">Send an Email</button>
-    
-    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
-  
-    <div *ngIf="resultData.length">
-      <h3>Result</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Property Name</th>
-            <th>Property Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of resultData">
-            <td>{{ item.property }}</td>
-            <td>{{ item.value }}</td>
-          </tr>
-        </tbody>
-      </table>
+<div class="login-container background">
+    <div class="container has-text-centered is-vcentered is-flex is-justify-content-center">
+        <div class="is-flex is-flex-direction-column gap">
+            <label class="label box mt-4" for="query">Enter Query:</label>
+
+            <textarea id="query" [(ngModel)]="query" rows="6" placeholder="Write your SPARQL query here..."></textarea>
+
+            <button class="button is-primary" (click)="submitQuery()">Submit</button>
+
+            <button class="button is-primary" (click)="sendEmail()">Send an Email</button>
+
+            <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+            <div *ngIf="resultData.length">
+
+                <label class="label">Result</label>
+                <div class="container has-text-centered is-vcentered is-flex is-justify-content-center">
+                    <table class="table is-striped">
+                        <thead>
+                            <tr>
+                                <th>Object</th>
+                                <th>Property</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of resultData">
+                                <td>
+                                    <a [routerLink]="['/one-concept-page']"
+                                        [queryParams]="{ uri: 'http://example.org/' + item.object }">
+                                        {{ extractName(item.object) }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: 'http://example.org/' + item.property }">
+                                        {{ extractName(item.property) }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: 'http://example.org/' + item.value }">
+                                        {{ extractName(item.value) }}
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-  
-  </div>
-  
+
+</div>

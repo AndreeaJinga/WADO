@@ -1,32 +1,69 @@
-<div class="container">
-    <h3 class="title is-3">Languages for Framework</h3>
+<div class="login-container background">
+    <div class="container has-text-centered is-vcentered is-flex is-justify-content-center">
+        <div class="columns">
+            <div class="column">
+                <h3 class="title is-3">Languages for Framework</h3>
 
-    <h4 class="subtitle is-4">Enter a programming language and find what frameworks use it</h4>
+                <h4 class="subtitle is-4">Enter a programming language and find what frameworks use it</h4>
 
-    <div class="input-section">
-        <div class="box">Choose the programming language</div>
+                <div class="input-section">
+                    <div class="box">
+                        Choose the programming language
 
-        <p *ngIf="keywords.length === 0">Loading keywords...</p>
+                        <p *ngIf="keywords.length === 0">Loading keywords...</p>
 
-        <div class="radio-group">
-            <div *ngFor="let keyword of keywords; let i = index" class="radio-item">
-                <input type="radio" [value]="keyword" [(ngModel)]="selectedKeyword" id="radio-{{i}}">
-                <label for="radio-{{i}}">
-                    <a [href]="keyword_links[i]" target="_blank">{{ keyword }}</a>
-                    <!-- <a [routerLink]="['/concept-page']" [queryParams]="{ link: keyword_links[i] }">
-                        {{ keyword }}
-                      </a> -->
-                </label>
+                        <div class="radio-group grid gap">
+                            <div *ngFor="let keyword of keywords; let i = index" class="radio-item cell">
+                                <input type="radio" [value]="keyword" [(ngModel)]="selectedKeyword" id="radio-{{i}}">
+                                <label for="radio-{{i}}">
+                                    <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: keyword_links[i] }">
+                                        {{ keyword }}
+                                    </a>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <button class="button is-primary" (click)="searchLanguage()" [disabled]="keywords.length === 0">Submit</button>
+                </div>
+
+                <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+                <div class="result-section" *ngIf="jsonResponse">
+                    <div class="box mt-5">
+                        <h3>Result: All the frameworks for language {{selectedKeyword}}</h3>
+
+                    </div>
+    <div class="container has-text-centered is-vcentered is-flex is-justify-content-center">
+                    
+                    <table class="table is-striped">
+                        <thead>
+                            <tr>
+                                <th>Class Type</th>
+                                <th>Instance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let link of jsonResponse">
+                                <td>
+                                    <a [routerLink]="['/one-concept-page']"
+                                        [queryParams]="{ uri: 'http://example.org/Framework' }">
+                                        {{ extractName('http://example.org/Framework') }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: link }">
+                                        {{ extractName(link) }}
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <button (click)="searchLanguage()" [disabled]="keywords.length === 0">Submit</button>
-    </div>
-
-    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
-
-    <div class="result-section" *ngIf="jsonResponse">
-        <h3>Result</h3>
-        <div class="result-box">{{ jsonResponse }}</div>
     </div>
 </div>
