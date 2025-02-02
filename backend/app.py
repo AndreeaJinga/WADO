@@ -1,6 +1,6 @@
 from flask import Flask
-import psycopg2
-from psycopg2 import sql
+from flask_sqlalchemy import SQLAlchemy
+from flask_restful import Api
 import os
 from dotenv import dotenv_values, load_dotenv
 # Import Blueprints

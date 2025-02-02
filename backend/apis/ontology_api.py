@@ -30,7 +30,7 @@ def get_class_instances(class_uri):
     """
     ontology_service: OntologyService = current_app.config['ONTOLOGY_SERVICE']
     instances = ontology_service.get_instances_of_class(class_uri)
-    return jsonify({"class_uri": class_uri, "instances": instances})
+    return jsonify({"class_uri": class_uri, "instances": instances}), 200
 
 
 @ontology_blueprint.route('/frameworks', methods=['GET'])
@@ -55,12 +55,13 @@ def get_classes():
     response = ontology_service.get_my_classes()
     return jsonify(response), 200    
     
+    
 @ontology_blueprint.route('/languages', methods=['GET'])
 def get_languages():
     ontology_service: OntologyService = current_app.config['ONTOLOGY_SERVICE']
     uri= current_app.config['BASE_URL']+"ProgrammingLanguage"
     languages = ontology_service.get_instances_of_class(uri)
-    return jsonify({"languages": languages})
+    return jsonify({"languages": languages}), 200
 
 
 @ontology_blueprint.route('/concept', methods=['GET'])
@@ -74,7 +75,7 @@ def get_concept_info():
     
     ontology_service: OntologyService = current_app.config['ONTOLOGY_SERVICE']
     concept_info = ontology_service.get_concept_info(concept_uri)
-    return jsonify({"concept_uri": concept_uri, "info": concept_info})
+    return jsonify({"concept_uri": concept_uri, "info": concept_info}), 200
 
 
 @ontology_blueprint.route('/sparql', methods=['POST'])
