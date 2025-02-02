@@ -1,0 +1,29 @@
+<div class="query-container">
+    <label for="query">Enter Query:</label>
+    <textarea id="query" [(ngModel)]="query" rows="6" placeholder="Write your SPARQL query here..."></textarea>
+    <button (click)="submitQuery()">Submit</button>
+  
+    <button class="email-btn" (click)="sendEmail()">Send an Email</button>
+    
+    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+  
+    <div *ngIf="resultData.length">
+      <h3>Result</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Property Name</th>
+            <th>Property Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of resultData">
+            <td>{{ item.property }}</td>
+            <td>{{ item.value }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+  </div>
+  

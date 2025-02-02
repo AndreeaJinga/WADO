@@ -1,5 +1,6 @@
 from flask import Flask
-import sqlite3
+import psycopg2
+from psycopg2 import sql
 import os
 from dotenv import dotenv_values, load_dotenv
 # Import Blueprints
@@ -13,19 +14,27 @@ from flask_cors import CORS
 
 config = dotenv_values(".env")
 
-def create_database(db_path):
-    """Create the SQLite database and user table if it does not exist."""
-    conn = sqlite3.connect(db_path)
+def create_database():
+    """Create the PostgreSQL database and user table if it does not exist."""
+    conn = psycopg2.connect(
+        dbname=config.get("POSTGRES_DB"),
+        user=config.get("POSTGRES_USER"),
+        password=config.get("POSTGRES_PASSWORD"),
+        host=config.get("POSTGRES_HOST"),
+        port=config.get("POSTGRES_PORT")
+    )
     cursor = conn.cursor()
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id SERIAL PRIMARY KEY,
             username TEXT UNIQUE NOT NULL,
             password TEXT NOT NULL
         )
     """)
     conn.commit()
+    cursor.close()
     conn.close()
+
 
 def create_app():
     global config
@@ -34,26 +43,31 @@ def create_app():
     app.config['JWT_SECRET_KEY'] = config.get('JWT_SECRET_KEY')
     app.config['BASE_URL'] = config.get('BASE_URL')
     CORS(app, resources={r"/*": {"origins": "*"}})
-    
-    # Initialize the DB path
-    db_path = os.path.join(os.path.dirname(__file__), 'users.db')
-    app.config['DATABASE'] = db_path
 
-    # 1) Create the database/tables if needed
-    create_database(db_path)
-    app.config['USER_SERVICE'] = UserService(db_path)
+    app.config['DATABASE'] = {
+        "dbname": config.get("POSTGRES_DB"),
+        "user": config.get("POSTGRES_USER"),
+        "password": config.get("POSTGRES_PASSWORD"),
+        "host": config.get("POSTGRES_HOST"),
+        "port": config.get("POSTGRES_PORT")
+    }
+
+    create_database()
+
+    app.config['USER_SERVICE'] = UserService(app.config['DATABASE'])
     app.config['ONTOLOGY_SERVICE'] = OntologyService(config.get('ontology_path'))
+    
     smtp_server = config.get('SMTP_SERVER')
     smtp_port = config.get('SMTP_PORT')
     smtp_user = config.get('SMTP_USER')
     smtp_pass = config.get('SMTP_PASS')
     app.config['EMAIL_SERVICE'] = EmailService(smtp_server, smtp_port, smtp_user, smtp_pass)
-    
-    # 3) Register the blueprints
+
     app.register_blueprint(auth_blueprint, url_prefix='/api/auth')
     app.register_blueprint(ontology_blueprint, url_prefix='/api/ontology')
 
     return app
+
 
 if __name__ == "__main__":
     flask_app = create_app()
