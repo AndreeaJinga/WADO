@@ -1,0 +1,201 @@
+openapi: 3.0.3
+info:
+  title: Flask API
+  description: OpenAPI specification for authentication and ontology management
+  version: 1.0.0
+
+servers:
+  - url: https://wado-backend-7f54306f53b0.herokuapp.com/api
+
+paths:
+  /auth/register:
+    post:
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+      responses:
+        "201":
+          description: User created successfully
+        "400":
+          description: User already exists or invalid input
+        "409":
+            description: User already exists
+
+  /auth/login:
+    post:
+      summary: Authenticate user and return JWT token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+      responses:
+        "200":
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        "401":
+          description: Invalid credentials
+
+  /ontology/class/{class_uri}/instances:
+    get:
+      summary: Retrieve instances of a class
+      parameters:
+        - name: class_uri
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List of instances
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  class_uri:
+                    type: string
+                  instances:
+                    type: array
+                    items:
+                      type: string
+
+  /ontology/frameworks:
+    get:
+      summary: Get frameworks for a programming language
+      parameters:
+        - name: language
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Frameworks list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  language:
+                    type: string
+                  frameworks:
+                    type: array
+                    items:
+                      type: string
+        "400":
+          description: Missing language parameter
+
+  /ontology/classes:
+    get:
+      summary: Get all available classes
+      responses:
+        "200":
+          description: List of classes
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+
+  /ontology/languages:
+    get:
+      summary: Get programming languages
+      responses:
+        "200":
+          description: List of languages
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  languages:
+                    type: array
+                    items:
+                      type: string
+
+  /ontology/concept:
+    get:
+      summary: Retrieve concept information
+      parameters:
+        - name: uri
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uri
+      responses:
+        "200":
+          description: Concept details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  concept_uri:
+                    type: string
+                  info:
+                    type: object
+        "400":
+          description: Missing concept URI
+
+  /ontology/sparql:
+    post:
+      summary: Execute a SPARQL query
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+                email_bool:
+                  type: boolean
+      responses:
+        "200":
+          description: Query results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: object
+        "400":
+          description: Missing query
+        "500":
+          description: Error executing query
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
