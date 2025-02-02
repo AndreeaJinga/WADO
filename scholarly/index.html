@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Scholarly HTML</title>
+    <link rel="stylesheet" href="scholarly.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <script src="scholarly.js"></script>
+    <style>
+        pre code {
+            width: 900px;
+            background-color: #eee;
+            border: 1px solid #999;
+            display: block;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body prefix="schema: http://schema.org">
+    <header>
+        <h1 class="title">Scholarly HTML</h1>
+    </header>
+
+    <div class="box" role="contentinfo">
+        <dl>
+            <dt>Authors</dt>
+            <dd>
+                Andreea Jinga
+                &amp;
+                Mihai - Alexandru Tomescu
+            </dd>
+        </dl>
+    </div>
+
+    <div typeof="sa:Abstract" id="abstract" role="doc-abstract">
+        <h2>Abstract</h2>
+        <p>
+            some text
+        </p>
+    </div>
+
+    <div id="introduction" role="doc-introduction">
+        <h2>Introduction</h2>
+        <p>
+            some text
+        </p>
+    </div>
+
+    <div id="Architecture">
+        <h2>Architecture of the web application</h2>
+
+        <div id="overview">
+            <h3>Overview</h3>
+            <p>
+                some text
+            </p>
+        </div>
+
+        <div id="components">
+            <h3>Components</h3>
+            <p>
+                some text
+            </p>
+        </div>
+
+        <div id="backend">
+            <h3>Backend</h3>
+            <div id="flask">
+                some text
+            </div>
+            <div id="apis">
+                some text
+                <div id="apis-auth">
+                    some text
+                </div>
+                <div id="apis-onto">
+                    some text
+                </div>
+            </div>
+        </div>
+
+        <div id="frontend">
+            <h3>Frontend</h3>
+            some text
+            <div id="ui">
+                some text
+            </div>
+            <div id="pages">
+                some text
+            </div>
+            <div id="angular">
+                some text
+            </div>
+        </div>
+
+        <div id="Development and Deployment">
+            some text
+        </div>
+    </div>
+
+    <section id="ref">
+        <h3>References</h3>
+
+    </section>
+</body>
+
+</html>
