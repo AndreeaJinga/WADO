@@ -1,0 +1,43 @@
+<div class="concept-container">
+    <h2>Concept Details</h2>
+
+    <!-- Error Message -->
+    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+    <!-- Results Table -->
+    <!-- <div *ngIf="conceptData.length"> -->
+    <div>
+        <h3>Properties</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Property Name</th>
+                    <th>Property Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Concept URI</td>
+                    <td>
+                        <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: conceptUri }">
+                            {{ extractName(conceptUri) }}
+                        </a>
+                    </td>
+                </tr>
+                <tr *ngFor="let item of links">
+                    <td>
+                        <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: item.key }">
+                            {{ extractName(item.key) }}
+                        </a>
+                    </td>
+
+                    <td>
+                        <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: item.value }">
+                            {{ extractName(item.value) }}
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
