@@ -1,53 +1,62 @@
-<div class="container">
-    <h3 class="title is-3">Instances of a class</h3>
+<div class="login-container background">
+    <div class="container has-text-centered is-vcentered is-flex is-justify-content-center">
+        <div class="columns">
+            <div class="column">
+                <h3 class="title is-3">Instances of a class</h3>
 
-    <h4 class="subtitle is-4">Enter a class type and find all the instances of it</h4>
+                <h4 class="subtitle is-4">Enter a class type and find all the instances of it</h4>
 
-    <div class="input-section">
-        <div class="box">Choose the class type</div>
+                <div class="input-section">
+                    <div class="box">
+                        <div class="label">Choose the class type</div>
 
-        <p *ngIf="keywords.length === 0">Loading classes...</p>
+                        <p *ngIf="keywords.length === 0">Loading classes...</p>
 
-        <div class="radio-group">
-            <div *ngFor="let keyword of keywords; let i = index" class="radio-item">
-                <input type="radio" [value]="keyword" [(ngModel)]="selectedKeyword" id="radio-{{i}}">
-                <label for="radio-{{i}}">
-                    <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: keyword_links[i] }">
-                        {{ keyword }}
-                    </a>
-                </label>
+                        <div class="radio-group grid gap">
+                            <div *ngFor="let keyword of keywords; let i = index" class="radio-item cell">
+                                <input type="radio" [value]="keyword" [(ngModel)]="selectedKeyword" id="radio-{{i}}">
+                                <label for="radio-{{i}}">
+                                    <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: keyword_links[i] }">
+                                        {{ keyword }}
+                                    </a>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+                    <button class="button is-primary" (click)="searchInstances()" [disabled]="keywords.length === 0">
+                        Submit
+                    </button>
+                </div>
+
+                <div class="container has-text-centered is-vcentered is-flex is-flex-direction-column is-justify-content-center mt-5">
+                    <h3 class="label">Result</h3>
+                    <table class="table is-striped">
+                        <thead>
+                            <tr>
+                                <th>Class Type</th>
+                                <th>Instance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let link of jsonResponse">
+                                <td>
+                                    <a [routerLink]="['/one-concept-page']"
+                                        [queryParams]="{ uri: 'http://example.org/' + selectedKeyword }">
+                                        {{ selectedKeyword }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: link }">
+                                        {{ extractName(link) }}
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-
-        <button (click)="searchInstances()" [disabled]="keywords.length === 0">Submit</button>
-    </div>
-
-    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
-
-    <div class="result-section" *ngIf="jsonResponse">
-        <h3>Result</h3>
-        <table class="table is-striped">
-            <thead>
-                <tr>
-                    <th>Class Type</th>
-                    <th>Instance</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let link of jsonResponse">
-                    <td>
-                        <a [routerLink]="['/one-concept-page']"
-                            [queryParams]="{ uri: 'http://example.org/' + selectedKeyword }">
-                            {{ selectedKeyword }}
-                        </a>
-                    </td>
-                    <td>
-                        <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: link }">
-                            {{ extractName(link) }}
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 </div>

@@ -1,48 +1,64 @@
-<div class="container">
-    <h1>Get Properties of a Resource</h1>
+<div class="login-container background">
+    <div class="container has-text-centered is-vcentered is-flex is-justify-content-center">
+        <div class="columns">
+            <div class="column">
+                <label class="title box">Get Properties of a Resource</label>
 
-    <div>
-        Enter a URL of a resource and click submit to get the all the available properties of the resource.
+                <div class="subtitle">
+                    Enter a URL of a resource and click submit to get the all the available properties of the resource.
+                </div>
+
+                <div class="input-section">
+                    <label class="label">Enter URL:</label>
+                    <div>
+                        <input class="box input" type="text" [(ngModel)]="user_url" placeholder="Enter URL here">
+                    </div>
+
+                    <p class="has-text-red" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+                    <button class="button is-primary mt-4" (click)="submitUrl()">Submit</button>
+                </div>
+
+
+                <div class="result-section" *ngIf="conceptUri">
+                    <div class="box mt-5">
+                        <h3>Result</h3>
+                    </div>
+
+                    <div class="container has-text-centered is-vcentered is-flex is-justify-content-center">
+                        <table class="table is-striped">
+                            <tr>
+                                <th>Property</th>
+                                <th>Value</th>
+                            </tr>
+                            <tr>
+                                <td>Concept URI</td>
+                                <td>
+                                    <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: conceptUri }">
+                                        {{ extractName(conceptUri) }}
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr *ngFor="let link of links">
+                                <td>
+                                    <a *ngIf="link.key.startsWith('http')" [routerLink]="['/one-concept-page']"
+                                        [queryParams]="{ uri: link.key }">
+                                        {{ extractName(link.key) }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a *ngIf="link.value.startsWith('http')" [routerLink]="['/one-concept-page']"
+                                        [queryParams]="{ uri: link.value }">
+                                        {{ extractName(link.value) }}
+                                    </a>
+                                    <span *ngIf="!link.value.startsWith('http')">{{ link.value }}</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="input-section">
-        <label>Enter URL:</label>
-        <input type="text" [(ngModel)]="user_url" placeholder="Enter URL here">
-        <button (click)="submitUrl()">Submit</button>
-    </div>
-
-    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
-
-    <div class="result-section" *ngIf="conceptUri">
-        <h3>Result</h3>
-        <table>
-            <tr>
-                <th>Property</th>
-                <th>Value</th>
-            </tr>
-            <tr>
-                <td>Concept URI</td>
-                <td>
-                    <a [routerLink]="['/concept-page']" [queryParams]="{ uri: conceptUri }">
-                        {{ extractName(conceptUri) }}
-                    </a>
-                </td>
-            </tr>
-            <tr *ngFor="let link of links">
-                <td>
-                    <a *ngIf="link.key.startsWith('http')" [routerLink]="['/one-concept-page']"
-                        [queryParams]="{ uri: link.key }">
-                        {{ extractName(link.key) }}
-                    </a>
-                </td>
-                <td>
-                    <a *ngIf="link.value.startsWith('http')" [routerLink]="['/one-concept-page']"
-                        [queryParams]="{ uri: link.value }">
-                        {{ extractName(link.value) }}
-                    </a>
-                    <span *ngIf="!link.value.startsWith('http')">{{ link.value }}</span>
-                </td>
-            </tr>
-        </table>
-    </div>
 </div>

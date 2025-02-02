@@ -1,41 +1,54 @@
-<div class="concept-container">
-    <h2>Concept Details</h2>
 
-    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+<div class="login-container background">
+    <div class="container has-text-centered is-vcentered is-flex is-justify-content-center">
+        <div class="columns">
+            <div class="column">
+                <h2 class="title">Concept Details</h2>
 
-    <!-- <div *ngIf="conceptData.length"> -->
-    <div>
-        <h3>Properties</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Property Name</th>
-                    <th>Property Value</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Concept URI</td>
-                    <td>
-                        <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: conceptUri }">
-                            {{ extractName(conceptUri) }}
-                        </a>
-                    </td>
-                </tr>
-                <tr *ngFor="let item of links">
-                    <td>
-                        <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: item.key }">
-                            {{ extractName(item.key) }}
-                        </a>
-                    </td>
+                <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
 
-                    <td>
-                        <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: item.value }">
-                            {{ extractName(item.value) }}
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                <div class="result-section" *ngIf="conceptUri">
+                    <div class="box mt-5">
+                        <h3>Details for 
+                            <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: conceptUri }">
+                                {{ extractName(conceptUri) }}
+                            </a>
+                        </h3>
+                    </div>
+
+                    <div class="container has-text-centered is-vcentered is-flex is-justify-content-center">
+                        <table class="table is-striped">
+                            <tr>
+                                <th>Property</th>
+                                <th>Value</th>
+                            </tr>
+                            <tr>
+                                <td>Concept URI</td>
+                                <td>
+                                    <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: conceptUri }">
+                                        {{ extractName(conceptUri) }}
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr *ngFor="let link of links">
+                                <td>
+                                    <a *ngIf="link.key.startsWith('http')" [routerLink]="['/one-concept-page']"
+                                        [queryParams]="{ uri: link.key }">
+                                        {{ extractName(link.key) }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a *ngIf="link.value.startsWith('http')" [routerLink]="['/one-concept-page']"
+                                        [queryParams]="{ uri: link.value }">
+                                        {{ extractName(link.value) }}
+                                    </a>
+                                    <span *ngIf="!link.value.startsWith('http')">{{ link.value }}</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
