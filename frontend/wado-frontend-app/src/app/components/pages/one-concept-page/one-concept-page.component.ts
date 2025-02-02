@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { extractName } from '../../../utils/string-utils';
+import { extractName, BASE_URL } from '../../../utils/string-utils';
 
 @Component({
   selector: 'app-one-concept-page',
@@ -34,7 +34,7 @@ export class OneConceptPageComponent implements OnInit {
   }
 
   fetchConceptDetails(): void {
-    this.http.get<any>(`http://127.0.0.1:5000/api/ontology/concept?uri=${encodeURIComponent(this.conceptUri)}`)
+    this.http.get<any>(`${BASE_URL}/ontology/concept?uri=${encodeURIComponent(this.conceptUri)}`)
       .subscribe({
         next: (response) => {
           this.extractData(response);

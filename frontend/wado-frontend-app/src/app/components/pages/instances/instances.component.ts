@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { extractName, BASE_URL } from '../../../utils/string-utils';
 
 @Component({
   selector: 'app-instances',
@@ -12,6 +13,7 @@ import { RouterModule } from '@angular/router';
   standalone: true,
 })
 export class InstancesComponent {
+  extractName = extractName; // Expose function to the template
   keywords: string[] = [];
   keyword_links: string[] = [];
   selectedKeyword: string = '';
@@ -25,7 +27,7 @@ export class InstancesComponent {
   }
 
   fetchKeywords(): void {
-    this.http.get<string[]>('http://127.0.0.1:5000/api/ontology/classes')
+    this.http.get<string[]>(`${BASE_URL}/ontology/classes`)
       .subscribe({
         next: (response: string[]) => {
           this.keyword_links = response;
@@ -55,7 +57,7 @@ export class InstancesComponent {
 
   const encodedLink = encodeURIComponent(selectedLink);
 
-    this.http.get<{instances: string[]}>(`http://127.0.0.1:5000/api/ontology/class/${encodedLink}/instances`)
+    this.http.get<{instances: string[]}>(`${BASE_URL}/ontology/class/${encodedLink}/instances`)
       .subscribe({
         next: (response) => {
           this.jsonResponse = response.instances || 'No result found';

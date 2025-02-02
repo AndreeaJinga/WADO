@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { extractName } from '../../../utils/string-utils';
+import { extractName, BASE_URL } from '../../../utils/string-utils';
 
 @Component({
   selector: 'app-concept-page',
@@ -14,6 +14,7 @@ import { extractName } from '../../../utils/string-utils';
 })
 export class ConceptPageComponent {
   extractName = extractName; // Expose function to the template
+
   user_url: string = '';
   conceptUri: string = '';
   links: { key: string, value: string }[] = [];
@@ -27,7 +28,7 @@ export class ConceptPageComponent {
       return;
     }
 
-    this.http.get<any>(`http://127.0.0.1:5000/api/ontology/concept?uri=${encodeURIComponent(this.user_url)}`)
+    this.http.get<any>(`${BASE_URL}/ontology/concept?uri=${encodeURIComponent(this.user_url)}`)
       .subscribe({
         next: (response) => {
           this.extractData(response);
