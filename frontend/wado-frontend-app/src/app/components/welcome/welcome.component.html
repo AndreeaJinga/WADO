@@ -1,9 +1,22 @@
-<div class="welcome-container">
-    <h1>Welcome to Our Application</h1>
-    <p>Select an option to continue:</p>
+<div class="login-container background">
+    <div class="container has-text-centered is-vcentered is-flex is-justify-content-center">
+        <div class="columns">
+            <div class="column">
 
-    <div class="button-group">
-        <button routerLink="/register">Register</button>
-        <button routerLink="/login">Login</button>
+                <h1>Welcome to Our Application</h1>
+
+                <p>Select an option to continue:</p>
+
+                <div class="is-flex is-flex-direction-column gap">
+                    <button class="is-primary button " routerLink="/register">Register</button>
+                    <button class="is-primary button " routerLink="/login">Login</button>
+                    <button class="is-primary button " routerLink="/instances">Instances</button>
+                    <button class="is-primary button " routerLink="/sparql-query">Sparql Query</button>
+                    <button class="is-primary button " routerLink="/concept-page">Concept Page</button>
+                    <button class="is-primary button " routerLink="/framework-info">Frameworks</button>
+                
+                </div>
+            </div>
+        </div>
     </div>
 </div>

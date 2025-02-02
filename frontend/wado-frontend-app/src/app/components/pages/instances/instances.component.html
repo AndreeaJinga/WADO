@@ -12,10 +12,9 @@
             <div *ngFor="let keyword of keywords; let i = index" class="radio-item">
                 <input type="radio" [value]="keyword" [(ngModel)]="selectedKeyword" id="radio-{{i}}">
                 <label for="radio-{{i}}">
-                    <a [href]="keyword_links[i]" target="_blank">{{ keyword }}</a>
-                    <!-- <a [routerLink]="['/concept-page']" [queryParams]="{ link: keyword_links[i] }">
+                    <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: keyword_links[i] }">
                         {{ keyword }}
-                      </a> -->
+                    </a>
                 </label>
             </div>
         </div>
@@ -27,6 +26,28 @@
 
     <div class="result-section" *ngIf="jsonResponse">
         <h3>Result</h3>
-        <div class="result-box">{{ jsonResponse }}</div>
+        <table class="table is-striped">
+            <thead>
+                <tr>
+                    <th>Class Type</th>
+                    <th>Instance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let link of jsonResponse">
+                    <td>
+                        <a [routerLink]="['/one-concept-page']"
+                            [queryParams]="{ uri: 'http://example.org/' + selectedKeyword }">
+                            {{ selectedKeyword }}
+                        </a>
+                    </td>
+                    <td>
+                        <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: link }">
+                            {{ extractName(link) }}
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

@@ -1,27 +1,45 @@
-<div class="login-container">
-    <h2>Login</h2>
+<div class="login-container background">
+    <div class="container has-text-centered is-vcentered is-flex is-justify-content-center">
+        <div class="columns">
+            <div class="column">
+                <div>
+                    <h2 class="title has-text-black">Login</h2>
+                </div>
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <div class="field">
+                        <label class="label has-text-black">Email</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input class="input" [(ngModel)]="email" type="text" placeholder="email@example.com"
+                                formControlName="email">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                            <span class="icon is-small is-right">
+                                <i class="fas fa-check"></i>
+                            </span>
+                        </div>
+                    </div>
 
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label>Email:</label>
-            <input type="email" formControlName="email" />
-            <div class="error" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
-                Enter a valid email
+                    <div class="field">
+                        <label class="label has-text-black">Password</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input class="input" [(ngModel)]="password" type="password" placeholder="********"
+                                formControlName="password" [class.is-error]="">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                            <span class="icon is-small is-right">
+                                <i class="fas fa-check"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <button class="is-primary button" type="submit" [disabled]="loginForm.invalid">Login</button>
+                </form>
+
+                <div *ngIf="message" class="message">{{ message }}</div>
+                <p>Don't have an account? <a routerLink="/register">Register here</a></p>
             </div>
         </div>
-
-        <div class="form-group">
-            <label>Password:</label>
-            <input type="password" formControlName="password" />
-            <div class="error" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-                Password is required
-            </div>
-        </div>
-
-        <button type="submit" [disabled]="loginForm.invalid">Login</button>
-    </form>
-
-    <div *ngIf="message" class="message">{{ message }}</div>
-
-    <p>Don't have an account? <a routerLink="/register">Register here</a></p>
+    </div>
 </div>

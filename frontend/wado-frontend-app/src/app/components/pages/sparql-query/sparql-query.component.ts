@@ -1,12 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { extractName, BASE_URL } from '../../../utils/string-utils';
 
 @Component({
   selector: 'app-sparql-query',
-  imports: [CommonModule, HttpClientModule, FormsModule],
+  imports: [CommonModule, HttpClientModule, FormsModule, RouterModule],
   templateUrl: './sparql-query.component.html',
   styleUrl: './sparql-query.component.css',
   standalone: true,
@@ -16,9 +17,10 @@ export class SparqlQueryComponent implements OnInit {
   private router = inject(Router);
 
   query: string = '';
-  resultData: { property: string, value: string }[] = [];
+  resultData: { object:string, property: string, value: string }[] = [];
   userEmail: string | null = null;
   errorMessage: string = '';
+  extractName = extractName; // Expose function to the template
 
   constructor() {
   }
@@ -57,16 +59,17 @@ export class SparqlQueryComponent implements OnInit {
 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    this.http.post<{ results: { Framework: string }[] }>(
-      'http://127.0.0.1:5000/api/ontology/sparql',
+    this.http.post<{ results: { object: string, property: string, value: string }[] }>(
+      `${BASE_URL}/ontology/sparql`,
       { query: this.query, email_bool: false },
       { headers }
     ).subscribe({
       next: (response) => {
         if (response.results && response.results.length > 0) {
           this.resultData = response.results.map(item => ({
-            property: "Framework",
-            value: item.Framework
+            object: item.object,
+            property: item.property,
+            value: item.value,
           }));
         } else {
           this.resultData = [];
@@ -96,16 +99,17 @@ export class SparqlQueryComponent implements OnInit {
 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    this.http.post<{ results: { Framework: string }[] }>(
-      'http://127.0.0.1:5000/api/ontology/sparql',
+    this.http.post<{ results: { object: string, property: string, value: string }[] }>(
+      `${BASE_URL}/ontology/sparql`,
       { query: this.query, email_bool: true },
       { headers }
     ).subscribe({
       next: (response) => {
         if (response.results && response.results.length > 0) {
           this.resultData = response.results.map(item => ({
-            property: "Framework",
-            value: item.Framework
+            object: item.object,
+            property: item.property,
+            value: item.value,
           }));
         } else {
           this.resultData = [];

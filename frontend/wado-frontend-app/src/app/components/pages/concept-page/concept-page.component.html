@@ -22,11 +22,26 @@
             </tr>
             <tr>
                 <td>Concept URI</td>
-                <td>{{ conceptUri }}</td>
+                <td>
+                    <a [routerLink]="['/concept-page']" [queryParams]="{ uri: conceptUri }">
+                        {{ extractName(conceptUri) }}
+                    </a>
+                </td>
             </tr>
             <tr *ngFor="let link of links">
-                <td>{{ link.key }}</td>
-                <td><a [href]="link.value" target="_blank">{{ link.value }}</a></td>
+                <td>
+                    <a *ngIf="link.key.startsWith('http')" [routerLink]="['/one-concept-page']"
+                        [queryParams]="{ uri: link.key }">
+                        {{ extractName(link.key) }}
+                    </a>
+                </td>
+                <td>
+                    <a *ngIf="link.value.startsWith('http')" [routerLink]="['/one-concept-page']"
+                        [queryParams]="{ uri: link.value }">
+                        {{ extractName(link.value) }}
+                    </a>
+                    <span *ngIf="!link.value.startsWith('http')">{{ link.value }}</span>
+                </td>
             </tr>
         </table>
     </div>

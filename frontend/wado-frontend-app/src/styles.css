@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+.background {
+    background-color: #f0f0f0;
+    min-height: 100vh;
+    height: 100%;
+}
+
+input.input {
+    background-color: white !important;
+    color: black !important;
+}
+
+.gap {
+    gap: 12px;
+}
