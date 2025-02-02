@@ -43,8 +43,8 @@
                             <tr *ngFor="let link of jsonResponse">
                                 <td>
                                     <a [routerLink]="['/one-concept-page']"
-                                        [queryParams]="{ uri: 'http://example.org/' + selectedKeyword }">
-                                        {{ selectedKeyword }}
+                                        [queryParams]="{ uri: 'http://example.org/' + keyword_to_print }">
+                                        {{ keyword_to_print }}
                                     </a>
                                 </td>
                                 <td>

@@ -19,6 +19,7 @@ export class InstancesComponent {
   selectedKeyword: string = '';
   jsonResponse: string[] = [];
   errorMessage: string = ''; // if any
+  keyword_to_print: string = '';
 
   constructor(private http: HttpClient) { }
 
@@ -33,7 +34,7 @@ export class InstancesComponent {
           this.keyword_links = response;
           this.keywords = response.map(link => {
             const parts = link.split('/');
-            return parts[parts.length - 1] || ''; 
+            return parts[parts.length - 1] || '';
           });
         },
         error: () => {
@@ -48,18 +49,19 @@ export class InstancesComponent {
       return;
     }
 
-  const selectedLink = this.keyword_links[this.keywords.indexOf(this.selectedKeyword)];
+    const selectedLink = this.keyword_links[this.keywords.indexOf(this.selectedKeyword)];
 
-  if (!selectedLink) {
-    this.errorMessage = 'Invalid selection!';
-    return;
-  }
+    if (!selectedLink) {
+      this.errorMessage = 'Invalid selection!';
+      return;
+    }
 
-  const encodedLink = encodeURIComponent(selectedLink);
+    const encodedLink = encodeURIComponent(selectedLink);
 
-    this.http.get<{instances: string[]}>(`${BASE_URL}/ontology/class/${encodedLink}/instances`)
+    this.http.get<{ instances: string[] }>(`${BASE_URL}/ontology/class/${encodedLink}/instances`)
       .subscribe({
         next: (response) => {
+          this.keyword_to_print = this.selectedKeyword;
           this.jsonResponse = response.instances || 'No result found';
           this.errorMessage = ''; // Clear errors
         },

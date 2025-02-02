@@ -19,6 +19,7 @@ export class FrameworkInfoComponent {
   selectedKeyword: string = '';
   jsonResponse: string[] = [];
   errorMessage: string = ''; // if any
+  current_chosen_keyword: string = '';
 
   constructor(private http: HttpClient) { }
 
@@ -28,7 +29,7 @@ export class FrameworkInfoComponent {
 
 
   fetchKeywords(): void {
-    this.http.get<{languages: string[]}>(`${BASE_URL}/ontology/languages`)
+    this.http.get<{ languages: string[] }>(`${BASE_URL}/ontology/languages`)
       .subscribe({
         next: (response) => {
           this.keyword_links = response.languages;
@@ -46,9 +47,10 @@ export class FrameworkInfoComponent {
       return;
     }
 
-    this.http.get<{frameworks: any}>(`${BASE_URL}/ontology/frameworks?language=${this.selectedKeyword}`)
+    this.http.get<{ frameworks: any }>(`${BASE_URL}/ontology/frameworks?language=${this.selectedKeyword}`)
       .subscribe({
         next: (response) => {
+          this.current_chosen_keyword = this.selectedKeyword;
           this.jsonResponse = response.frameworks || 'No result found';
           this.errorMessage = ''; // Clear errors
         },
