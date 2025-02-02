@@ -1,0 +1,32 @@
+<div class="container">
+    <h3 class="title is-3">Instances of a class</h3>
+
+    <h4 class="subtitle is-4">Enter a class type and find all the instances of it</h4>
+
+    <div class="input-section">
+        <div class="box">Choose the class type</div>
+
+        <p *ngIf="keywords.length === 0">Loading classes...</p>
+
+        <div class="radio-group">
+            <div *ngFor="let keyword of keywords; let i = index" class="radio-item">
+                <input type="radio" [value]="keyword" [(ngModel)]="selectedKeyword" id="radio-{{i}}">
+                <label for="radio-{{i}}">
+                    <a [href]="keyword_links[i]" target="_blank">{{ keyword }}</a>
+                    <!-- <a [routerLink]="['/concept-page']" [queryParams]="{ link: keyword_links[i] }">
+                        {{ keyword }}
+                      </a> -->
+                </label>
+            </div>
+        </div>
+
+        <button (click)="searchInstances()" [disabled]="keywords.length === 0">Submit</button>
+    </div>
+
+    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+    <div class="result-section" *ngIf="jsonResponse">
+        <h3>Result</h3>
+        <div class="result-box">{{ jsonResponse }}</div>
+    </div>
+</div>
