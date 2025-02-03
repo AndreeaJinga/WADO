@@ -39,7 +39,7 @@ The backend uses Flask, rdflib, and JWT authentication, ensuring secure access t
 </div>
 
 
-## Getting Started
+## :partying_face:Getting Started
 
 ### Installation
 
@@ -74,7 +74,7 @@ cd frontend
 npm install  # Installs all packages from package.json
 ```
 
-## **Run Locally**
+## :runner:**Run Locally**
 
 ```bash
 # Start backend
