@@ -15,15 +15,44 @@
             <div class="columns">
                 <div class="column is-one-quarter">
                     <aside class="menu">
-                        <p class="menu-label">API</p>
+                        <p class="menu-label"><a href="#abstract" class="has-text-black">Abstract</a></p>
+                        <p class="menu-label"><a href="#introduction" class="has-text-black">Introduction</a></p>
+                        <p class="menu-label">
+                            <a href="#architecture" class="has-text-black"> Architecture of the Application</a>
+                        </p>
                         <ul class="menu-list">
-                            <li><a href="#apis-auth">Auth</a></li>
-                            <li><a href="#apis-onto">Ontology</a></li>
+                            <li><a href="#arch-components">Main Components</a></li>
+                            <li><a href="#arch-general-diagram">General Diagram</a></li>
+                            <li>
+                                <a href="#arch-frontend">Frontend</a>
+                                <ul class="menu-list">
+                                    <li><a href="#arch-frontend-technologies">Used Technologies</a></li>
+                                    <li><a href="#arch-frontend-components">UI Components</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#arch-backend">Backend</a>
+                                <ul class="menu-list">
+                                    <li><a href="#arch-backend">TOADD</a></li>
+                                    <li><a href="#arch-backend">TOADD</a></li>
+                                </ul>
+                            </li>
                         </ul>
-                        <p class="menu-label">Frontend</p>
+                        <p class="menu-label">
+                            <a href="#ontology" class="has-text-black"> Ontology of the Application</a>
+                        </p>
                         <ul class="menu-list">
-                            <li><a href="#ui">UI</a></li>
-                            <li><a href="#pages">Pages</a></li>
+                            <li>
+                                <a href="#ontology-taxology">Taxology of the Ontology</a>
+                                <ul class="menu-list">
+                                    <li><a href="#ontology-taxology">Structure of the Ontology</a></li>
+                                    <li><a href="#ontology-graph-structure">Visualization of Ontology Taxology</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#ontology-population">Population of the Ontology</a></li>
+                            <li><a href="#ontology-populated">Final Ontology</a></li>
+                            <li><a href="#ontology-queries">Interesting Queries</a></li>
+                                    
                         </ul>
                     </aside>
                 </div>
@@ -51,7 +80,7 @@
                             the backend can be protected behind firewalls and other security measures.
                         </p>
                         <br />
-                        <p>
+                        <p id="arch-components">
                             The architecture consists of three main components:
                         <ul class="content is-list">
                             <li>
@@ -99,10 +128,12 @@
                         </ul>
                         </p>
 
-                        <div id="general-diagram">
-                            <h4 class="title is-5">General Diagram</h4>
-                            <img src="media/architecture.drawio.svg" alt="Architecture Diagram"
-                                style="max-width: 100%; height: auto;" />
+                        <div id="arch-general-diagram">
+                            <div class="box mt-3" id="general-diagram-img">
+                                <h4 class="title is-5">General Diagram</h4>
+                                <img src="media/architecture.drawio.svg" alt="Architecture Diagram"
+                                    style="max-width: 100%; height: auto;" />
+                            </div>
                             <p>
                                 This diagram illustrates the overall architecture of the application, showing the
                                 interaction between the frontend, backend, the database and the ontology, and how
@@ -157,6 +188,50 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="container" id="color-palete">
+                                <h4 class="title is-5">🎨 Color Palette</h4>
+                                <table class="table is-striped is-hoverable has-text-centered">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Hex Code</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Primary Color</td>
+                                            <td class="color-box has-text-white" style="background-color: #222831;">
+                                                #222831</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Secondary Color</td>
+                                            <td class="color-box has-text-white" style="background-color: #393E46;">
+                                                #393E46</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nav Bar Color</td>
+                                            <td class="color-box has-text-white" style="background-color: #006E49">
+                                                #006E49</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Accent Color</td>
+                                            <td class="color-box" style="background-color: #00ADB5">#00ADB5</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Text Color</td>
+                                            <td class="color-box" style="background-color: #EEEEEE">#EEEEEE
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Background Color</td>
+                                            <td class="color-box" style="background-color: #f0f0f0">#F0F0F0
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
                             <p>
                                 The frontend is designed to be intuitive and user-friendly, making it easy for users to
                                 navigate through the application and access the features they need. The frontend
@@ -169,7 +244,7 @@
                                 and responsive to user interactions.
                             </p>
 
-                            <div class="box mt-3">
+                            <div class="box mt-3" id="arch-frontend-technologies">
                                 <h4 class="title is-5">Used Technologies</h4>
                                 <p>
                                     The frontend is developed using <strong>Angular Framework</strong>, a popular
@@ -192,7 +267,7 @@
                                 </p>
                             </div>
 
-                            <div class="box">
+                            <div class="box" id="arch-frontend-components">
                                 <h4 class="title is-5">UI Components</h4>
                                 <p>
                                     The UI includes components for exposing the functionalities of both APIs provided by
@@ -348,28 +423,409 @@
                                     The results are displayed in a
                                     three-columns table format, showing the objects, their properties and their
                                     values.
+                                    <br />
+                                    Also, the user can retrive the result of the query in a JSON format in an email by
+                                    clicking the "Send Email" button. The user must provide a valid email address at the
+                                    register step and this is the reason why the user must be logged in to access this
+                                    page.
                                     </p>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div id="ontology" class="box">
+                        <h3 class="title is-4">Ontology of the Application</h3>
 
-
-
-                        <div id="ontology" class="box">
-                            <h3 class="title is-4">ontology</h3>
-                            <p>some text</p>
-                            <div id="ui" class="box">
-                                <h4 class="title is-5">UI</h4>
-                                <p>some text</p>
+                        <div class="field is-grouped is-grouped-multiline">
+                            <div class="control">
+                                <div class="tags has-addons">
+                                    <span class="tag is-dark">OWL</span>
+                                    <span class="tag is-info">5.6.4</span>
+                                </div>
                             </div>
-                            <div id="pages" class="box">
-                                <h4 class="title is-5">Pages</h4>
-                                <p>some text</p>
+                        </div>
+                        <p>
+                            The ontology of the application is a RDF dataset that allows efficient querying and
+                            retrieval of data. The dataset is queried using SPARQL, a query language for RDF datasets.
+                            The ontology is in OWL format and provides a rich and structured representation of the data
+                            models to provide comprehensive information for web development, including programming
+                            languages, frameworks, licenses, and other related topics. To populate the ontology we
+                            retrived data from the GitHub GraphQL API and the DBpedia SPARQL API to ensure a rich and
+                            diverse dataset.
+                        </p>
+
+                        <div class="box mt-3" id="ontology-taxology">
+                            <h4 class="title is-5">Taxology of the Ontology</h4>
+                            <p>
+                                The ontology is structured in a hierarchical manner, with classes representing
+                                different concepts and instances representing specific entities. The classes are
+                                organized based on their relationships and properties, allowing for efficient querying
+                                and retrieval of data. The ontology is designed to be extensible, allowing for
+                                easy addition of new classes and instances as needed. The ontology includes classes for:
+                            <ul id="list-of-taxology-classes" class="content is-list">
+                                <li>
+                                    <span class="has-text-primary">ProgrammingLanguage</span>
+                                    <span>
+                                        - A class representing a programming language, with properties for type
+                                        (rdf:type), name (hasName), developer (hasDeveloper), designer (hasDesigner),
+                                        supported paradigm (ns1:supportsParadigm), label (rdfs:label), description
+                                        (ns1:hasDescription), url (ns1:hasURL), released year (ns1:hasReleaseYear),
+                                        license (ns1:isLicenseUnder).
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="has-text-primary">ProgrammingParadigm</span>
+                                    <span>
+                                        - A class representing a programming paradigm, with properties for type
+                                        (rdf:type), label (rdfs:label), description (ns1:hasDescription),
+                                        url (ns1:hasURL), released year (ns1:hasReleaseYear),
+                                        license (ns1:isLicenseUnder), used programming language (ns1:usesLanguage).
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="has-text-primary">SoftwareArchitecture</span>
+                                    <span>
+                                        - A class representing a software architecture, with properties for type
+                                        (rdf:type), label (rdfs:label), description (ns1:hasDescription),
+                                        url (ns1:hasURL), released year (ns1:hasReleaseYear),
+                                        license (ns1:isLicenseUnder), used programming language (ns1:usesLanguage).
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="has-text-primary">License</span>
+                                    <span>
+                                        - A class representing a software license, with properties for type
+                                        (rdf:type), label (rdfs:label), description (ns1:hasDescription),
+                                        url (ns1:hasURL), released year (ns1:hasReleaseYear),
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="has-text-primary">OperatingSystem</span>
+                                    <span>
+                                        - A class representing an operating system, with properties for type
+                                        (rdf:type), label (rdfs:label), description (ns1:hasDescription),
+                                        url (ns1:hasURL), released year (ns1:hasReleaseYear),
+                                        license (ns1:isLicenseUnder), used programming language (ns1:usesLanguage).
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="has-text-primary">Compiler</span>
+                                    <span>
+                                        - A class representing a compiler, with properties for type
+                                        (rdf:type), label (rdfs:label), description (ns1:hasDescription),
+                                        url (ns1:hasURL), released year (ns1:hasReleaseYear),
+                                        license (ns1:isLicenseUnder), used programming language (ns1:usesLanguage).
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="has-text-primary">Interpreter</span>
+                                    <span>
+                                        - A class representing an interpreter, with properties for type
+                                        (rdf:type), label (rdfs:label), description (ns1:hasDescription),
+                                        url (ns1:hasURL), released year (ns1:hasReleaseYear),
+                                        license (ns1:isLicenseUnder), used programming language (ns1:usesLanguage).
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="has-text-primary">ApplicationServer</span>
+                                    <span>
+                                        - A class representing an Application Server, with properties for type
+                                        (rdf:type), label (rdfs:label), description (ns1:hasDescription),
+                                        url (ns1:hasURL), released year (ns1:hasReleaseYear),
+                                        license (ns1:isLicenseUnder), used programming language (ns1:usesLanguage).
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="has-text-primary">Framework</span>
+                                    <span>
+                                        - A class representing a framework, with properties for type
+                                        (rdf:type), label (rdfs:label), description (ns1:hasDescription), author
+                                        (rdfs:hasAuthor), used architecture (ns1:usesArchitecture),
+                                        url (ns1:hasURL), released year (ns1:hasReleaseYear), supported paradigm
+                                        (ns1:supportsParadigm),
+                                        license (ns1:isLicenseUnder), used programming language (ns1:usesLanguage).
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="has-text-primary">ORMFramework</span>
+                                    <span>
+                                        - A class representing an ORM framework, with properties for type
+                                        (rdf:type), label (rdfs:label), description (ns1:hasDescription), author
+                                        (rdfs:hasAuthor), used architecture (ns1:usesArchitecture),
+                                        url (ns1:hasURL), released year (ns1:hasReleaseYear), parent class
+                                        (rdfs:subClassOf), license (ns1:isLicenseUnder), supported paradigm
+                                        (ns1:supportsParadigm),
+                                        used programming language (ns1:usesLanguage).
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="has-text-primary">SPAFramework</span>
+                                    <span>
+                                        - A class representing a SPA framework, with properties for type
+                                        (rdf:type), label (rdfs:label), description (ns1:hasDescription), author
+                                        (rdfs:hasAuthor), used architecture (ns1:usesArchitecture),
+                                        url (ns1:hasURL), released year (ns1:hasReleaseYear), parent class
+                                        (rdfs:subClassOf), license (ns1:isLicenseUnder), supported paradigm
+                                        (ns1:supportsParadigm),
+                                        used programming language (ns1:usesLanguage).
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="has-text-primary">FrontendFramework</span>
+                                    <span>
+                                        - A class representing a Frontend framework, with properties for type
+                                        (rdf:type), label (rdfs:label), description (ns1:hasDescription), author
+                                        (rdfs:hasAuthor), used architecture (ns1:usesArchitecture),
+                                        url (ns1:hasURL), released year (ns1:hasReleaseYear), parent class
+                                        (rdfs:subClassOf), license (ns1:isLicenseUnder), supported paradigm
+                                        (ns1:supportsParadigm),
+                                        used programming language (ns1:usesLanguage).
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="has-text-primary">BackendFramework</span>
+                                    <span>
+                                        - A class representing a Backend framework, with properties for type
+                                        (rdf:type), label (rdfs:label), description (ns1:hasDescription), author
+                                        (rdfs:hasAuthor), used architecture (ns1:usesArchitecture),
+                                        url (ns1:hasURL), released year (ns1:hasReleaseYear), parent class
+                                        (rdfs:subClassOf), license (ns1:isLicenseUnder), supported paradigm
+                                        (ns1:supportsParadigm),
+                                        used programming language (ns1:usesLanguage).
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="has-text-primary">TemplateEngine</span>
+                                    <span>
+                                        - A class representing a Template Engine framework, with properties for type
+                                        (rdf:type), label (rdfs:label), description (ns1:hasDescription), author
+                                        (rdfs:hasAuthor), used architecture (ns1:usesArchitecture),
+                                        url (ns1:hasURL), released year (ns1:hasReleaseYear), parent class
+                                        (rdfs:subClassOf), license (ns1:isLicenseUnder), supported paradigm
+                                        (ns1:supportsParadigm),
+                                        used programming language (ns1:usesLanguage).
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="has-text-primary">MachineLearningEngine</span>
+                                    <span>
+                                        - A class representing a Machine Learning framework, with properties for type
+                                        (rdf:type), label (rdfs:label), description (ns1:hasDescription), author
+                                        (rdfs:hasAuthor), used architecture (ns1:usesArchitecture),
+                                        url (ns1:hasURL), released year (ns1:hasReleaseYear), parent class
+                                        (rdfs:subClassOf), license (ns1:isLicenseUnder), supported paradigm
+                                        (ns1:supportsParadigm),
+                                        used programming language (ns1:usesLanguage).
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="has-text-primary">TestingEngine</span>
+                                    <span>
+                                        - A class representing a Testing framework, with properties for type
+                                        (rdf:type), label (rdfs:label), description (ns1:hasDescription), author
+                                        (rdfs:hasAuthor), used architecture (ns1:usesArchitecture),
+                                        url (ns1:hasURL), released year (ns1:hasReleaseYear), parent class
+                                        (rdfs:subClassOf), license (ns1:isLicenseUnder), supported paradigm
+                                        (ns1:supportsParadigm),
+                                        used programming language (ns1:usesLanguage).
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="has-text-primary">AOPEngine</span>
+                                    <span>
+                                        - A class representing a AOP framework, with properties for type
+                                        (rdf:type), label (rdfs:label), description (ns1:hasDescription), author
+                                        (rdfs:hasAuthor), used architecture (ns1:usesArchitecture),
+                                        url (ns1:hasURL), released year (ns1:hasReleaseYear), parent class
+                                        (rdfs:subClassOf), license (ns1:isLicenseUnder), supported paradigm
+                                        (ns1:supportsParadigm),
+                                        used programming language (ns1:usesLanguage).
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="has-text-primary">SDK</span>
+                                    <span>
+                                        - A class representing a SDK, with properties for type
+                                        (rdf:type), label (rdfs:label), description (ns1:hasDescription),
+                                        url (ns1:hasURL), released year (ns1:hasReleaseYear), license
+                                        (ns1:isLicenseUnder), used programming language (ns1:usesLanguage).
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="has-text-primary">Library</span>
+                                    <span>
+                                        - A class representing a Library, with properties for type
+                                        (rdf:type), label (rdfs:label), description (ns1:hasDescription),
+                                        url (ns1:hasURL), released year (ns1:hasReleaseYear), license
+                                        (ns1:isLicenseUnder), used programming language (ns1:usesLanguage).
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="has-text-primary">IDE</span>
+                                    <span>
+                                        - A class representing a IDE, with properties for type
+                                        (rdf:type), label (rdfs:label), description (ns1:hasDescription),
+                                        url (ns1:hasURL), released year (ns1:hasReleaseYear), license
+                                        (ns1:isLicenseUnder), used programming language (ns1:usesLanguage).
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="has-text-primary">Organization</span>
+                                    <span>
+                                        - A class representing a Organization, with properties for type
+                                        (rdf:type), label (rdfs:label), description (ns1:hasDescription),
+                                        url (ns1:hasURL), released year (ns1:hasReleaseYear), license
+                                        (ns1:isLicenseUnder), used programming language (ns1:usesLanguage).
+                                    </span>
+                                </li>
+
+                            </ul>
+
+                            For a better understanding of the ontology, we provide a graph that illustrates the classes
+                            and the relations between them. The first graph was generated using the <strong>Protege
+                                Application</strong>.
+
+                            <div class="box mt-3" id="ontology-graph-structure">
+                                <h4 class="title is-5">Ontology Graph - Protege</h4>
+                                <img src="media/graph1.png" alt="Ontology Graph"
+                                    style="max-width: 100%; height: auto;" />
                             </div>
+
+                            The second graph was generated using the <strong>WebVOWL</strong> tool and can be visualised
+                            at the following link:
+                            <a
+                                href="https://service.tib.eu/webvowl/#opts=sidebar=0;cd=150;dd=210;mode_pnp=true;#file=structure_of_ontology.owl">
+                                Ontology Graph on WebVowl
+                            </a>.
+
+                            <div class="box mt-3" id="ontology-graph">
+                                <h4 class="title is-5">Ontology Graph - WebVowl</h4>
+                                <img src="media/structure_of_ontology.owl.svg" alt="Ontology Graph"
+                                    style="max-width: 100%; height: auto;" />
+                            </div>
+                            </p>
+                        </div>
+
+                        <div class="box mt-3" id="ontology-population">
+                            <h4 class="title is-5">Populating the Ontology</h4>
+                            <p>
+                                To populate the ontology, we retrieved data from the GitHub GraphQL API and the DBpedia
+                                SPARQL API. The GitHub GraphQL API provides information about programming languages and
+                                useful metadata such as description, url, creation year, and license. The DBpedia SPARQL
+                                API provides information about software frameworks, including their authors, release
+                                date and license. The data was transformed into RDF/XML format. To obtain a rich and
+                                diverse dataset, we retrieved data from multiple sources and combined it into a single
+                                ontology.
+                            </p>
+                            <p>
+                                To obtain a consistent and full ontology, we mapped existent data from both APIs to our
+                                classes and properties, by searching for classes names as tags in the GitHub API. At the
+                                end, we mapped the tag, which was our class, with the found object from the API via an
+                                existing property. The same process was done for the DBpedia API, but in this case, we
+                                searched for the framework name in the API and mapped it to our class.
+                            </p>
+                            <p>
+                                The ontology was then imported into the RDF database and queried using SPARQL to
+                                retrieve relevant information based on user requests.
+                                As a 'in progress' state, the output from running the GraphQL GitHub API is present in
+                                the following file: <a
+                                    href="https://github.com/AndreeaJinga/WADO/blob/main/scholarly/media/running_github_api_script.txt">
+                                    running_of_github_api_script.txt.
+                                </a>
+                            </p>
+                        </div>
+
+                        <div class="box mt-3" id="ontology-populated">
+                            <h4 class="title is-5">Final Ontology</h4>
+                            <p>
+                                The final ontology was created by combining the data from both APIs and ensuring that
+                                the classes and properties are consistent and well-defined. The ontology provides a rich
+                                and structured representation of the data models, allowing for efficient querying and
+                                retrieval of data.
+
+                                The final ontology is available in the following file: <a
+                                    href="https://github.com/AndreeaJinga/WADO/blob/main/ontology_scripts/ontology.owl">ontology.owl.</a>
+                                And for exemplification purposes, we provide a sample of the ontology below using the
+                                Protege Application:
+                            <div class="box mt-3" id="ontology-graph1">
+                                <h4 class="title is-5">Final Ontology - With instances for some classes</h4>
+                                <img src="media/graph2_withInstances.png"
+                                    alt="Final Ontology - With instances for some classes"
+                                    style="max-width: 100%; height: auto;" />
+                            </div>
+                            <div class="box mt-3" id="ontology-graph2">
+                                <h4 class="title is-5">Final Ontology - Instances for Programming Language class</h4>
+                                <img src="media/graph3_language_example.png"
+                                    alt="Final Ontology - Instances for Programming Language class"
+                                    style="max-width: 100%; height: auto;" />
+                            </div>
+                            </p>
+                        </div>
+
+                        <div class="box mt-3" id="ontology-queries">
+                            <h4 class="title is-5">Interesting Queries</h4>
+                            <p>
+                                To demonstrate the capabilities of the ontology, we provide some interesting queries
+                                that can be executed using SPARQL. These queries allow users to retrieve specific
+                                information from the ontology based on their requirements. The queries are designed to
+                                showcase the flexibility and power of the ontology in querying and retrieving data.
+
+                            <div class="box mt-3" id="ontology-query1">
+                                <h5 class="subtitle is-5">Query 1 - Retrieve all properties of all programming languages
+                                </h5>
+                                <p>
+                                    This query retrieves all programming languages from the ontology, along with their
+                                    properties. The query selects all instances of the ProgrammingLanguage class and
+                                    retrieves their properties, including the name, developer, designer, supported
+                                    paradigm, label, description, URL, released year, and license.
+                                <pre>
+                                <code class="language-sql">SELECT ?object ?property ?value 
+                                    WHERE { 
+                                        ?object ?property ?value .
+                                        FILTER regex(str(?object), "ProgrammingLanguage")
+                                    }</code></pre>
+                                To see the results of this query, you can use our dedicated page "SparQL Query" and
+                                execute the query. But don't forget to login first :).
+                                </p>
+                            </div>
+                            <div class="box mt-3" id="ontology-query2">
+                                <h5 class="subtitle is-5">Query 2 - Retrieve all frameworks that use a programming
+                                    language whose name starts with 'j'</h5>
+                                <p>
+                                    This query retrieves all instances of
+                                    the Framework class and retrieves their name from the ontology, that use a
+                                    programming
+                                    language whose name starts with the letter 'j'.
+                                <pre>
+                                <code class="language-sql">SELECT ?object ?property ?value 
+                                    WHERE { 
+                                        ?object ?property ?value .
+                                        FILTER regex(str(?value), "ProgrammingLanguage") .
+                                        FILTER regex(str(?object), "Framework") .
+                                        FILTER regex(str(?value), "^j")
+                                    }</code></pre>
+                                To see the results of this query, you can use our dedicated page "SparQL Query" and
+                                execute the query. But don't forget to login first :).
+                                </p>
+                            </div>
+                            <!-- <div class="box mt-3" id="ontology-query3">
+                                <h5 class="subtitle is-5">Query 3 -
+                                </h5>
+                                <p>
+                                    This query retrieves
+                                <pre>
+                                <code class="language-sql">SELECT ?object ?property ?value 
+                                    WHERE { 
+                                        ?object ?property ?value .
+                                        FILTER regex(str(?object), "ProgrammingLanguage")
+                                    }</code></pre>
+                                To see the results of this query, you can use our dedicated page "SparQL Query" and
+                                execute the query. But don't forget to login first :).
+                                </p>
+                            </div> -->
                         </div>
                     </div>
                 </div>
-            </div>
     </section>
 </body>
 
