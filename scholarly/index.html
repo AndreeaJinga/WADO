@@ -118,6 +118,45 @@
 
                         <div id="arch-frontend" class="box">
                             <h3 class="title is-4">Frontend Component</h3>
+
+                            <div class="field is-grouped is-grouped-multiline">
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">Angular</span>
+                                        <span class="tag is-info">19.1.4</span>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">Bulma</span>
+                                        <span class="tag is-info">1.0.3</span>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">HTML</span>
+                                        <span class="tag is-info">5</span>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">CSS</span>
+                                        <span class="tag is-info">3</span>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">JavaScript</span>
+                                        <span class="tag is-info">20.13.1</span>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">TypeScript</span>
+                                        <span class="tag is-info">5.7.3</span>
+                                    </div>
+                                </div>
+                            </div>
                             <p>
                                 The frontend is designed to be intuitive and user-friendly, making it easy for users to
                                 navigate through the application and access the features they need. The frontend
@@ -141,9 +180,7 @@
                                     authentication, data visualization and querying. The frontend communicates with the
                                     backend via two RESTful APIs to fetch data and update the UI dynamically, all of
                                     this being made by using the Angular HTTPClient module to send requests to the
-                                    backend and receive
-                                    responses. For development we used version 19.0.0 of Angular and version 12.0.0 of
-                                    Angular Material.
+                                    backend and receive responses. For development we used version 19.1.4 of Angular.
                                 </p>
                                 <p>
                                     For styling the UI components we used <strong> Bulma CSS framework</strong>, which
@@ -177,7 +214,8 @@
                                         application. It provides users with easy access to the different sections of the
                                         application, including the home page, authentication pages, and ontology pages.
                                         The navigation bar is responsive
-                                        and adapts to different screen sizes to ensure a consistent user experience. When
+                                        and adapts to different screen sizes to ensure a consistent user experience.
+                                        When
                                         the screen size is reduced, the navigation bar collapses into a hamburger menu.
                                     </p>
                                 </div>
@@ -200,7 +238,7 @@
                                         <img src="./pages/register_page.png" />
                                     </figure>
                                     <p>
-                                        The register page allows users to create an account by providing their
+                                        The "Register" page allows users to create an account by providing their
                                         email and password. The page includes input fields for email and password, as
                                         well as a button to submit the registration form. The email field is validated
                                         to ensure it is in the correct format, and the password field is validated to
@@ -215,13 +253,101 @@
                                         <img src="./pages/login_page.png" />
                                     </figure>
                                     <p>
-                                        The login page allows users to authenticate themselves by providing their
+                                        The "Login" page allows users to authenticate themselves by providing their
                                         email and password. The page includes input fields for email and password, as
                                         well as a button to submit the login form. The page can be access from the
                                         welcome page by
                                         clicking on the "Login" button or from the navigation bar by clicking on the
                                         "Login" button. Also, when accessing a page that requires authentication, the
                                         user is redirected to the login page if he is not logged in already.
+                                    </p>
+                                </div>
+                                <div id="arch-frontend-page-concept" class="mt-3">
+                                    <h5 class="subtitle is-5">Concept Page</h5>
+                                    <figure class="image">
+                                        <img src="./pages/concept-page.png" />
+                                    </figure>
+                                    <p>
+                                        The "Concept" page allows users to view the properties of a resource by
+                                        providing its URI. The page includes an input field for the URI and a button to
+                                        submit the form. The page can be access from the navigation bar by clicking on
+                                        the "Concept Page" button. After submitting the form, the page displays the
+                                        properties of the resource, including the concept URI and its properties. The
+                                        user can click on the concept URI to view more details about the resource.
+                                        Also, the user can access this page without being logged in.
+                                    </p>
+                                </div>
+                                <div id="arch-frontend-page-one-concept" class="mt-3">
+                                    <h5 class="subtitle is-5">One Concept Page</h5>
+                                    <figure class="image">
+                                        <img src="./pages/one-concept_page.png" />
+                                    </figure>
+                                    <p>
+                                        The "One Concept" page allows users to view the properties of a resource. The
+                                        page can be access by clicking on the concept URI everywhere in the application.
+                                        The page displays the properties of the
+                                        resource, including the concept URI and its properties. The user can click again
+                                        on the concept URI from the page and will be redirected to the details of the
+                                        clicked resource inside the same page. Also, the user can
+                                        access this page without being logged in.
+                                    </p>
+                                </div>
+                                <div id="arch-frontend-page-framework" class="mt-3">
+                                    <h5 class="subtitle is-5">Frameworks Page</h5>
+                                    <figure class="image">
+                                        <img src="./pages/framework_page.png" />
+                                    </figure>
+                                    <p>
+                                        The "Framework" page allows users to view the frameworks that used a specified
+                                        programming language. The page can be access by clicking on the "Frameworks"
+                                        button from the navigation bar. Initially, the page displays a list of all
+                                        programming languages available in the ontology. For more details, the user can
+                                        access the "Concept" page of each programming language by clicking its name from
+                                        the list. The user can select a language from the list and after clicking the
+                                        "Submit" button he will view all the frameworks from the ontology that use that
+                                        language. Also, the user can access this page without being logged in.
+                                    </p>
+                                </div>
+                                <div id="arch-frontend-page-instances" class="mt-3">
+                                    <h5 class="subtitle is-5">Instances of a Class Page</h5>
+                                    <figure class="image">
+                                        <img src="./pages/instance_page.png" />
+                                    </figure>
+                                    <p>
+                                        The "Instances" page allows users to view all the instances of a specified class
+                                        from the ontology. The page can be access by clicking on the "Instances" button
+                                        from the navigation bar and the user can access this page without being logged
+                                        in. Initially, the page displays a list of all classes available in the
+                                        ontology. For more details, the user can access the "Concept"
+                                        page of each class by clicking its name from the list. The user can
+                                        select a class from the list and after clicking the "Submit" button he will view
+                                        all the instances from the ontology that are of that class.
+                                    </p>
+                                </div>
+                                <div id="arch-frontend-page-sparql" class="mt-3">
+                                    <h5 class="subtitle is-5">SPARQL Query Page</h5>
+                                    <figure class="image">
+                                        <img src="./pages/sparql_page.png" />
+                                    </figure>
+                                    <p>
+                                        The "SPARQL Query" page allows users to execute SPARQL queries on the ontology.
+                                        The page can be access by clicking on the "SPARQL" button from the navigation
+                                        bar and the user <u>must</u> be logged in to access this page. The user can
+                                        write a SPARQL query in the input field and after clicking the "Submit" button
+                                        he will view the results of the query. The query must respect the SPARQL syntax,
+                                        meaning the requested data must be selected in a triplette pair of object,
+                                        property and value. To simplify, the query must begin with the following
+                                        structure:
+                                    <pre>
+                                        <code class="language-sql">SELECT ?object ?property ?value 
+                                            WHERE { 
+                                                ?object ?property ?value .
+                                                # rest of the query
+                                            }</code>
+                                    </pre>
+                                    The results are displayed in a
+                                    three-columns table format, showing the objects, their properties and their
+                                    values.
                                     </p>
                                 </div>
                             </div>
