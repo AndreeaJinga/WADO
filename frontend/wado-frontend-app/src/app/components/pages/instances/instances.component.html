@@ -1,5 +1,5 @@
 <div class="login-container background">
-    <div class="container has-text-centered is-vcentered is-flex is-justify-content-center">
+    <div class="container has-text-centered is-vcentered is-flex is-justify-content-center" vocab="https://schema.org/">
         <div class="columns">
             <div class="column">
                 <h3 class="title is-3">Instances of a class</h3>
@@ -13,9 +13,11 @@
                         <p *ngIf="keywords.length === 0">Loading classes...</p>
 
                         <div class="radio-group grid gap">
-                            <div *ngFor="let keyword of keywords; let i = index" class="radio-item cell">
+                            <div *ngFor="let keyword of keywords; let i = index" class="radio-item cell"
+                                typeof="SoftwareApplication">
                                 <input type="radio" [value]="keyword" [(ngModel)]="selectedKeyword" id="radio-{{i}}">
-                                <label for="radio-{{i}}">
+                                <label for="radio-{{i}}" property="name">
+                                    <meta property="url" content="{{ keyword_links[i] }}">
                                     <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: keyword_links[i] }">
                                         {{ keyword }}
                                     </a>
@@ -30,7 +32,8 @@
                     </button>
                 </div>
 
-                <div class="container has-text-centered is-vcentered is-flex is-flex-direction-column is-justify-content-center mt-5">
+                <div
+                    class="container has-text-centered is-vcentered is-flex is-flex-direction-column is-justify-content-center mt-5">
                     <h3 class="label">Result</h3>
                     <table class="table is-striped">
                         <thead>
@@ -40,15 +43,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let link of jsonResponse">
+                            <tr *ngFor="let link of jsonResponse" typeof="Product">
+                                <meta property="url" content="{{ link }}">
                                 <td>
                                     <a [routerLink]="['/one-concept-page']"
-                                        [queryParams]="{ uri: 'http://example.org/' + keyword_to_print }">
+                                        [queryParams]="{ uri: 'http://example.org/' + keyword_to_print }"
+                                        property="category">
                                         {{ keyword_to_print }}
                                     </a>
                                 </td>
                                 <td>
-                                    <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: link }">
+                                    <meta property="url" content="{{ link }}">
+                                    <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: link }"
+                                        property="name">
                                         {{ extractName(link) }}
                                     </a>
                                 </td>

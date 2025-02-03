@@ -1,5 +1,5 @@
 <div class="login-container background">
-    <div class="container has-text-centered is-vcentered is-flex is-justify-content-center">
+    <div class="container has-text-centered is-vcentered is-flex is-justify-content-center" vocab="https://schema.org/">
         <div class="columns">
             <div class="column">
                 <h3 class="title is-3">Languages for Framework</h3>
@@ -12,10 +12,11 @@
 
                         <p *ngIf="keywords.length === 0">Loading keywords...</p>
 
-                        <div class="radio-group grid gap">
-                            <div *ngFor="let keyword of keywords; let i = index" class="radio-item cell">
+                        <div class="radio-group grid gap" typeof="https://schema.org/ItemList">
+                            <div *ngFor="let keyword of keywords; let i = index" class="radio-item cell"
+                                typeof="SoftwareSourceCode" property="itemListElement">
                                 <input type="radio" [value]="keyword" [(ngModel)]="selectedKeyword" id="radio-{{i}}">
-                                <label for="radio-{{i}}">
+                                <label for="radio-{{i}}" property="programmingLanguage">
                                     <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: keyword_links[i] }">
                                         {{ keyword }}
                                     </a>
@@ -43,18 +44,24 @@
                                     <th>Instance</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr *ngFor="let link of jsonResponse">
+                            <tbody typeof="https://schema.org/ItemList">
+                                <tr *ngFor="let link of jsonResponse" typeof="https://schema.org/SoftwareApplication"
+                                    property="itemListElement">
                                     <td>
                                         <a [routerLink]="['/one-concept-page']"
-                                            [queryParams]="{ uri: 'http://example.org/Framework' }">
+                                            [queryParams]="{ uri: 'http://example.org/Framework' }"
+                                            property="applicationCategory">
                                             {{ extractName('http://example.org/Framework') }}
                                         </a>
                                     </td>
                                     <td>
-                                        <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: link }">
-                                            {{ extractName(link) }}
-                                        </a>
+                                        <div typeof="https://schema.org/SoftwareSourceCode">
+                                            <meta property="programmingLanguage" content="{{ current_chosen_keyword }}">
+                                            <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: link }"
+                                                property="name">
+                                                {{ extractName(link) }}
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
