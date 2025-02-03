@@ -23,6 +23,7 @@
                         <ul class="menu-list">
                             <li><a href="#arch-components">Main Components</a></li>
                             <li><a href="#arch-general-diagram">General Diagram</a></li>
+                            <li><a href="#arch-c4-diagram">C4 Application Diagram</a></li>
                             <li>
                                 <a href="#arch-frontend">Frontend</a>
                                 <ul class="menu-list">
@@ -33,10 +34,14 @@
                             <li>
                                 <a href="#arch-backend">Backend</a>
                                 <ul class="menu-list">
-                                    <li><a href="#arch-backend">TOADD</a></li>
-                                    <li><a href="#arch-backend">TOADD</a></li>
+                                    <li><a href="#arch-backend-technologies">Used Technologies</a></li>
+                                    <li><a href="#arch-backend-apis">RESTful APIs</a></li>
+                                    <li><a href="#arch-backend-auth-api">Auth API</a></li>
+                                    <li><a href="#arch-backend-ontology-api">Ontology API</a></li>
                                 </ul>
                             </li>
+                            <li><a href="#arch-github">Github Repository</a></li>
+
                         </ul>
                         <p class="menu-label">
                             <a href="#ontology" class="has-text-black"> Ontology of the Application</a>
@@ -52,18 +57,36 @@
                             <li><a href="#ontology-population">Population of the Ontology</a></li>
                             <li><a href="#ontology-populated">Final Ontology</a></li>
                             <li><a href="#ontology-queries">Interesting Queries</a></li>
-                                    
                         </ul>
+                        <p class="menu-label"><a href="#references" class="has-text-black">References</a></p>
                     </aside>
                 </div>
                 <div class="column">
                     <div id="abstract" class="box">
                         <h3 class="title is-5">Abstract</h3>
-                        <p>some text</p>
+                        <p>
+                            The WADO App is a web application that leverages the Semantic Web and ontologies to provide
+                            a structured and interactive platform for exploring programming languages, frameworks, and
+                            related topics. This documentation offers a comprehensive overview of the application's
+                            architecture, components, and functionalities.
+                        </p>
                     </div>
                     <div id="introduction" class="box">
                         <h3 class="title is-4">Introduction</h3>
-                        <p>some text</p>
+                        <p>
+                            Welcome to the documentation of the WADO App, a web application designed to
+                            highlight the capabilities of the Semantic Web and demonstrate the power of
+                            ontologies in web development. The application provides users with a platform to
+                            explore programming languages, frameworks, and related topics in a structured and
+                            interactive manner.
+                        </p>
+                        <p>
+                            This documentation is structured to provide a clear and detailed overview of the
+                            application's architecture, including diagrams and descriptions of the main components and
+                            their interactions. Whether you are a developer looking to understand the technical details
+                            or a user interested in the application's capabilities, this documentation will provide you
+                            with the necessary information.
+                        </p>
                     </div>
                     <div id="architecture" class="box">
                         <h3 class="title is-4">Architecture of the Web Application</h3>
@@ -79,6 +102,7 @@
                             as the load can be balanced across multiple servers, and <strong>security</strong>, as
                             the backend can be protected behind firewalls and other security measures.
                         </p>
+
                         <br />
                         <p id="arch-components">
                             The architecture consists of three main components:
@@ -145,6 +169,41 @@
                                 database. The Ontology API queries the RDF dataset to retrieve relevant information
                                 based on user requests.
                             </p>
+                        </div>
+
+                        <div id="arch-c4-diagram">
+                            <h4 class="title is-5 mt-4">C4 Diagram of the Application</h4>
+                            <p>
+                                Next, we created the C4 Diagram of the Application, which provides a more detailed view
+                                of
+                                the application's architecture, showing the interaction between the frontend, backend,
+                                the
+                                database, and the ontology, and how user requests are processed and data flows through
+                                the
+                                system. The C4 Diagram is divided into three levels, each providing a different level of
+                                detail about the application's architecture.
+                                The first level provides an overview of the application's architecture, showing the main
+                                components and their interactions.
+                            </p>
+                            <div class="box mt-3" id="c4-diagram-img">
+                                <h4 class="title is-5">C4 Diagram of the Application - Level 1</h4>
+                                <img src="media/c4_l1.drawio.svg" alt="Architecture Diagram"
+                                    style="max-width: 100%; height: auto;" />
+                            </div>
+                            The second level provides a more detailed view of the
+                            components and their relationships.
+                            <div class="box mt-3" id="c4-diagram-img">
+                                <h4 class="title is-5">C4 Diagram of the Application - Level 2</h4>
+                                <img src="media/c4_l2.drawio.svg" alt="Architecture Diagram"
+                                    style="max-width: 100%; height: auto;" />
+                            </div>
+                            The third level provides a detailed view of the
+                            components and their interactions with the database and the ontology.
+                            <div class="box mt-3" id="c4-diagram-img">
+                                <h4 class="title is-5">C4 Diagram of the Application - Level 3</h4>
+                                <img src="media/c4_l3.drawio.svg" alt="Architecture Diagram"
+                                    style="max-width: 100%; height: auto;" />
+                            </div>
                         </div>
 
                         <div id="arch-frontend" class="box">
@@ -431,6 +490,281 @@
                                     </p>
                                 </div>
                             </div>
+                        </div>
+
+                        <div id="arch-backend" class="box">
+                            <h3 class="title is-4">Backend Component</h3>
+
+                            <div class="field is-grouped is-grouped-multiline">
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">Python</span>
+                                        <span class="tag is-info">3.12.3</span>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">Flask</span>
+                                        <span class="tag is-info">3.1.0</span>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">Flask-Cors</span>
+                                        <span class="tag is-info">5.0.0</span>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">Flask-JWT-Extended</span>
+                                        <span class="tag is-info">4.7.1</span>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">Flask-Migrate</span>
+                                        <span class="tag is-info">4.1.0</span>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">Flask-RESTful</span>
+                                        <span class="tag is-info">0.3.10</span>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">Flask-SQLAlchemy</span>
+                                        <span class="tag is-info">3.1.1</span>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">bcrypt</span>
+                                        <span class="tag is-info">4.2.1</span>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">blinker</span>
+                                        <span class="tag is-info">1.9.0</span>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">PyJWT</span>
+                                        <span class="tag is-info">2.10.1</span>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">rdflib</span>
+                                        <span class="tag is-info">7.1.3</span>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">SQLAlchemy</span>
+                                        <span class="tag is-info">2.0.37</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="box mt-3" id="arch-backend-technologies">
+                                <h4 class="title is-5">Used Technologies</h4>
+                                <p>
+                                    The backend is developed using <strong>Flask Framework</strong>, a lightweight and
+                                    flexible framework for building web applications. Flask provides a simple and
+                                    extensible structure for developing RESTful APIs, making it ideal for building
+                                    scalable and maintainable web applications. The backend is responsible for
+                                    processing
+                                    user requests, querying the RDF dataset, and returning structured responses in JSON
+                                    format. The backend is developed using Flask Framework, version 3.1.0.
+
+                                    The backend uses Flask-Cors to handle Cross-Origin Resource Sharing
+                                    (CORS) requests, allowing the frontend to communicate with the backend securely.
+                                    The backend uses Flask-JWT-Extended for user authentication and
+                                    authorization, ensuring secure access to the application. The backend uses
+                                    Flask-RESTful
+                                    to create RESTful APIs, making it easy to define routes and handle user requests.
+                                    The backend uses Flask-SQLAlchemy to interact with the PostgreSQL
+                                    database, ensuring secure data handling and efficient data retrieval. The backend
+                                    uses PyJWT for
+                                    JSON Web Token (JWT) handling, ensuring secure user authentication and
+                                    authorization.
+                                    The backend uses rdflib to interact with the RDF dataset, ensuring
+                                    efficient querying and retrieval of data.
+                                </p>
+                            </div>
+
+                            <div class="box mt-3" id="arch-backend-apis">
+                                <h4 class="title is-5">RESTful APIs</h4>
+                                <p>
+                                    The backend provides two RESTful APIs: the Auth API and the Ontology API. The Auth
+                                    API is responsible for user authentication and authorization, while the Ontology API
+                                    is responsible for querying the RDF dataset and
+                                    returning structured responses in JSON format. The APIs are designed to be
+                                    extensible, allowing for easy addition of new routes and functionalities as needed.
+                                </p>
+
+                                <div id="arch-backend-auth-api">
+                                    <h5 class="subtitle is-5 mt-5">Auth API</h5>
+                                    <p>
+                                        The Auth API provides endpoints for user authentication and authorization. The
+                                        API includes routes for user registration, user login, and user logout. The API
+                                        uses JWT tokens for secure user authentication and authorization, ensuring that
+                                        only authenticated users can access the application. The API is designed to be
+                                        secure and efficient, ensuring that user data is handled safely and securely.
+
+                                        The Auth API includes the following routes:
+                                    <ul class="content is-list">
+                                        <li>
+                                            <span class="has-text-primary">/auth/register</span>
+                                            <span>
+                                                : A POST route for user registration, allowing users to create a new
+                                                account by providing their email and password. The route returns a
+                                                success message if the user is registered successfully, or an error
+                                                message if the user already exists or the input is invalid.
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="has-text-primary">/auth/login</span>
+                                            <span>
+                                                : A POST route for user login, allowing users to authenticate
+                                                themselves by providing their email and password. The route returns a
+                                                JWT token if the user is authenticated successfully, or an error message
+                                                if the user is not found or the password is incorrect.
+                                            </span>
+                                    </ul>
+                                    </p>
+                                </div>
+
+                                <div id="arch-backend-ontology-api">
+                                    <h5 class="subtitle is-5 mt-5">Ontology API</h5>
+                                    <p>
+                                        The Ontology API provides endpoints for querying the RDF dataset and returning
+                                        structured responses in JSON format. The API includes routes for executing
+                                        SPARQL
+                                        queries, retrieving data for a specific concept, retrieving instances of a
+                                        specific class, and retrieving properties of a specific instance. The API is
+                                        designed to be efficient and scalable, ensuring that data can be retrieved
+                                        quickly and accurately.
+
+                                        The Ontology API includes the following routes:
+                                    <ul class="content is-list">
+                                        <li>
+                                            <span class="has-text-primary">/ontology/class/{class_uri}/instances</span>
+                                            <span>
+                                                : A GET route for retrieving instances of a specific class from the
+                                                RDF dataset. The route takes the class URI as a parameter and returns a
+                                                list of instances for that class.
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="has-text-primary">/ontology/frameworks</span>
+                                            <span>
+                                                : A GET route for retrieving frameworks for a programming language
+                                                from the RDF dataset. The route takes the language as a parameter and
+                                                returns a list of frameworks that use that language.
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="has-text-primary">/ontology/classes</span>
+                                            <span>
+                                                : A GET route for retrieving all available classes from the RDF
+                                                dataset. The route returns a list of classes available in the dataset.
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="has-text-primary">/ontology/languages</span>
+                                            <span>
+                                                : A GET route for retrieving all available programming languages
+                                                from the RDF dataset. The route returns a list of programming languages
+                                                available in the dataset.
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="has-text-primary">/ontology/concept</span>
+                                            <span>
+                                                : A GET route for retrieving information about one concept. The route
+                                                takes the
+                                                concept URI as a parameter and returns detailed information about the
+                                                concept.
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="has-text-primary">/ontology/sparql</span>
+                                            <span>
+                                                : A POST route for executing a SPARQL query on the RDF dataset. The
+                                                route takes a JSON object with the query as a parameter and returns the
+                                                results of the query. The route is designed to be flexible, allowing
+                                                users to execute complex queries and retrieve specific data from the
+                                                dataset. The route is secured with JWT tokens, ensuring that only
+                                                authenticated users can access it. The route also includes an option to
+                                                send the query results to the user's email address, providing a
+                                                convenient way to retrieve and store query results.
+                                            </span>
+                                        </li>
+                                    </ul>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="arch-github" class="box">
+                            <h3 class="title is-4">GitHub</h3>
+
+                            <div class="field is-grouped is-grouped-multiline">
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">git</span>
+                                        <span class="tag is-info">2.42.0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>
+                                Inside this project, Github Application was used for version control and collaborative
+                                work
+                                between the team members.
+                                The source code of the application can be found on
+                                <a href="https://github.com/AndreeaJinga/WADO/tree/main">WADO Repository</a>, which is a
+                                public
+                                repository, so anyone can access it and see the code.
+                                The code is divided into multiple folders, each folder containing a specific part of the
+                                application.
+                                The main folders are:
+                            <ul class="content is-list">
+                                <li>
+                                    <span class="has-text-primary">backend</span>
+                                    <span>
+                                        - contains the code for the backend of the application
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="has-text-primary">frontend</span>
+                                    <span>
+                                        - contains the code for the frontend of the application
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="has-text-primary">ontology_scripts</span>
+                                    <span>
+                                        - contains the code for the ontology of the application
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="has-text-primary">openapi_spec</span>
+                                    <span>
+                                        - contains the code for the openapi specification of the application
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="has-text-primary">scholarly</span>
+                                    <span>
+                                        - contains the code for the scholarly documentation of the application
+                                    </span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     <div id="ontology" class="box">
@@ -824,6 +1158,14 @@
                                 </p>
                             </div> -->
                         </div>
+                    </div>
+
+                    <div id="references" class="box">
+                        <h3 class="title is-4">References</h3>
+                        <p>
+                            The following references were used in the development of the application and the creation of
+                            this documentation:
+                        </p>
                     </div>
                 </div>
     </section>
