@@ -1,32 +1,35 @@
 # WADO
 
-
-<!-- Table of Contents -->
 # :notebook_with_decorative_cover: Table of Contents
 
-- [About the Project](#star2-about-the-project)
-  * [Screenshots](#camera-screenshots)
-  * [Tech Stack](#space_invader-tech-stack)
-  * [Features](#dart-features)
-  * [Color Reference](#art-color-reference)
-  * [Environment Variables](#key-environment-variables)
-- [Getting Started](#toolbox-getting-started)
-  * [Prerequisites](#bangbang-prerequisites)
-  * [Installation](#gear-installation)
-  * [Running Tests](#test_tube-running-tests)
-  * [Run Locally](#running-run-locally)
-  * [Deployment](#triangular_flag_on_post-deployment)
-- [Usage](#eyes-usage)
-- [Roadmap](#compass-roadmap)
-- [Contributing](#wave-contributing)
-- [FAQ](#grey_question-faq)
+- [About the Project](#star2-about-the-project-and-technologies)
+- [Getting Started](#getting-started)
+  - [Installation](#Installation)
+  - [Set Frontend](#3-set-frontend)
+  - [Clone the Repository](#1-clone-the-repository)
+  - [Set Backend](#2-set-backend)
+  - [Set Frontend](#3-set-frontend)
+- [Run Locally](#Run-Locally)
 - [License](#warning-license)
 - [Contact](#handshake-contact)
-- [Acknowledgements](#gem-acknowledgements)
+- [Acknowledgements](#gem-resources)
 
 
 <!-- About the Project -->
-## :star2: About the Project
+## :star2: About the Project and Technologies
+This project is a Flask + Angular web application that enables users to explore an ontology related to programming concepts, frameworks, and languages. It provides a RESTful API for querying RDF data stored into Ontology, integrating SPARQL queries to retrieve ontology instances and relationships dynamically.
+
+The Angular frontend allows users to:
+
+✅ Search for frameworks based on a programming language.
+
+✅ Explore instances of ontology classes dynamically.
+
+✅ View detailed information about concepts with linked semantic properties.
+
+✅ Use RDFa + Schema.org to enhance structured data for SEO and linked data integration.
+
+The backend uses Flask, rdflib, and JWT authentication, ensuring secure access to ontology data. The frontend is fully responsive and deployed on Heroku, supporting semantic web technologies to create a knowledge-driven user experience. 🚀
 
 <!-- Screenshots -->
 ### :camera: Screenshots
@@ -36,193 +39,56 @@
 </div>
 
 
-<!-- TechStack -->
-### :space_invader: Tech Stack
+## Getting Started
 
-<details>
-  <summary>Client</summary>
-  <!-- <ul>
-    <li><a href="https://www.typescriptlang.org/">Typescript</a></li>
-    <li><a href="https://nextjs.org/">Next.js</a></li>
-    <li><a href="https://reactjs.org/">React.js</a></li>
-    <li><a href="https://tailwindcss.com/">TailwindCSS</a></li>
-  </ul> -->
-</details>
+### Installation
 
-<details>
-  <summary>Server</summary>
-  <!-- <ul>
-    <li><a href="https://www.typescriptlang.org/">Typescript</a></li>
-    <li><a href="https://expressjs.com/">Express.js</a></li>
-    <li><a href="https://go.dev/">Golang</a></li>
-    <li><a href="https://nestjs.com/">Nest.js</a></li>
-    <li><a href="https://socket.io/">SocketIO</a></li>
-    <li><a href="https://www.prisma.io/">Prisma</a></li>    
-    <li><a href="https://www.apollographql.com/">Apollo</a></li>
-    <li><a href="https://graphql.org/">GraphQL</a></li>
-  </ul> -->
-</details>
+Follow these steps to set up the **backend (Flask)** and **frontend (Angular)**.
 
-<details>
-<summary>Database</summary>
-  <!-- <ul>
-    <li><a href="https://www.mysql.com/">MySQL</a></li>
-    <li><a href="https://www.postgresql.org/">PostgreSQL</a></li>
-    <li><a href="https://redis.io/">Redis</a></li>
-    <li><a href="https://neo4j.com/">Neo4j</a></li>
-    <li><a href="https://www.mongodb.com/">MongoDB</a></li>
-  </ul> -->
-</details>
-
-<details>
-<summary>DevOps</summary>
-  <!-- <ul>
-    <li><a href="https://www.docker.com/">Docker</a></li>
-    <li><a href="https://www.jenkins.io/">Jenkins</a></li>
-    <li><a href="https://circleci.com/">CircleCLI</a></li>
-  </ul> -->
-</details>
-
-<!-- Features -->
-### :dart: Features
-
-- Feature 1
-- Feature 2
-- Feature 3
-
-<!-- Color Reference -->
-### :art: Color Reference
-
-| Color             | Hex                                                                |
-| ----------------- | ------------------------------------------------------------------ |
-| Primary Color | ![#222831](https://via.placeholder.com/10/222831?text=+) #222831 |
-| Secondary Color | ![#393E46](https://via.placeholder.com/10/393E46?text=+) #393E46 |
-| Accent Color | ![#00ADB5](https://via.placeholder.com/10/00ADB5?text=+) #00ADB5 |
-| Text Color | ![#EEEEEE](https://via.placeholder.com/10/EEEEEE?text=+) #EEEEEE |
-
-
-<!-- Env Variables -->
-<!-- ### :key: Environment Variables
-
-To run this project, you will need to add the following environment variables to your .env file
-
-`API_KEY`
-
-`ANOTHER_API_KEY` -->
-
-<!-- Getting Started -->
-## 	:toolbox: Getting Started
-
-<!-- Prerequisites -->
-### :bangbang: Prerequisites
-<!-- 
-This project uses Yarn as package manager
+### 1️⃣ **Clone the Repository**
+```bash
+git clone https://github.com/your-repo.git
+cd your-repo
+```
+### 2️⃣ **Set Backend**
 
 ```bash
- npm install --global yarn
-``` -->
+cd backend
+python -m venv venv  # Create virtual environment
+source venv/bin/activate  # Activate on macOS/Linux
+venv\Scripts\activate  # Activate on Windows
+pip install -r requirements.txt  # Install dependencies
 
-<!-- Installation -->
-### :gear: Installation
-
-<!-- Install my-project with npm
-
-```bash
-  yarn install my-project
-  cd my-project
-``` -->
-   
-<!-- Running Tests -->
-### :test_tube: Running Tests
-
-<!-- To run tests, run the following command
-
-```bash
-  yarn test test
-``` -->
-
-<!-- Run Locally -->
-### :running: Run Locally
-
-Clone the project
-
-```bash
-  git clone https://github.com/AndreeaJinga/WADO.git
+# Set environment variables
+DATABASE_URL=postgresql://username:password@localhost:5432/your_database
+SECRET_KEY=your-secret-key
+JWT_SECRET_KEY=your-jwt-secret
+BASE_URL=http://example.org/
 ```
 
-<!-- Go to the project directory
+### 3️⃣ **Set Frontend**
 
 ```bash
-  cd my-project
+npm install -g @angular/cli
+cd frontend
+npm install  # Installs all packages from package.json
 ```
 
-Install dependencies
+## **Run Locally**
 
 ```bash
-  yarn install
+# Start backend
+cd backend
+source venv/bin/activate  # Activate virtual environment (Windows: venv\Scripts\activate)
+python app.py  # Start the Flask server
+# Start frontend
+cd frontend
+ng serve
 ```
 
-Start the server
-
-```bash
-  yarn start
-``` -->
-
-
-<!-- Deployment -->
-### :triangular_flag_on_post: Deployment
-<!-- 
-To deploy this project run
-
-```bash
-  yarn deploy
-``` -->
-
-
-<!-- Usage -->
-## :eyes: Usage
-<!-- 
-Use this space to tell a little more about your project and how it can be used. Show additional screenshots, code samples, demos or link to other resources.
-
-
-```javascript
-import Component from 'my-project'
-
-function App() {
-  return <Component />
-}
-``` -->
-
-
-<!-- Contributing -->
-## :wave: Contributing
-
-<a href="https://github.com/Louis3797/awesome-readme-template/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" />
-</a>
-
-
-Contributions are always welcome!
-
-See `contributing.md` for ways to get started.
-
-
-<!-- FAQ -->
-## :grey_question: FAQ
-
-- Question 1
-
-  + Answer 1
-
-- Question 2
-
-  + Answer 2
-
-
-<!-- License -->
 ## :warning: License
 
-Distributed under the no License. See LICENSE.txt for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
 
 
 <!-- Contact -->
@@ -235,10 +101,9 @@ Mihai-Alexandru Tomescu - tomihai15@yahoo.com
 Project Link: [https://github.com/AndreeaJinga/WADO.git](https://github.com/AndreeaJinga/WADO.git)
 
 
-<!-- Acknowledgments -->
-## :gem: Acknowledgements
+## :gem: Resources
 
-Use this section to mention useful resources and libraries that you have used in your projects.
+Useful resources and libraries:
 
  - [Shields.io](https://shields.io/)
  - [Awesome README](https://github.com/matiassingers/awesome-readme)
