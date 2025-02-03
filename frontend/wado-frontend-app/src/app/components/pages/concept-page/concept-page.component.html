@@ -1,5 +1,5 @@
 <div class="login-container background">
-    <div class="container has-text-centered is-vcentered is-flex is-justify-content-center">
+    <div class="container has-text-centered is-vcentered is-flex is-justify-content-center" vocab="https://schema.org/">
         <div class="columns">
             <div class="column">
                 <label class="title box">Get Properties of a Resource</label>
@@ -20,7 +20,7 @@
                 </div>
 
 
-                <div class="result-section" *ngIf="conceptUri">
+                <div class="result-section" *ngIf="conceptUri"  typeof="Thing">
                     <div class="box mt-5">
                         <h3>Result</h3>
                     </div>
@@ -34,21 +34,24 @@
                             <tr>
                                 <td>Concept URI</td>
                                 <td>
-                                    <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: conceptUri }">
+                                    <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: conceptUri }"
+                                    property="url">
                                         {{ extractName(conceptUri) }}
                                     </a>
                                 </td>
                             </tr>
-                            <tr *ngFor="let link of links">
+                            <tr *ngFor="let link of links" typeof="PropertyValue">
                                 <td>
                                     <a *ngIf="link.key.startsWith('http')" [routerLink]="['/one-concept-page']"
-                                        [queryParams]="{ uri: link.key }">
+                                        [queryParams]="{ uri: link.key }"
+                                        property="name">
                                         {{ extractName(link.key) }}
                                     </a>
                                 </td>
                                 <td>
                                     <a *ngIf="link.value.startsWith('http')" [routerLink]="['/one-concept-page']"
-                                        [queryParams]="{ uri: link.value }">
+                                        [queryParams]="{ uri: link.value }"
+                                        property="value">
                                         {{ extractName(link.value) }}
                                     </a>
                                     <span *ngIf="!link.value.startsWith('http')">{{ link.value }}</span>
@@ -60,5 +63,4 @@
             </div>
         </div>
     </div>
-
 </div>

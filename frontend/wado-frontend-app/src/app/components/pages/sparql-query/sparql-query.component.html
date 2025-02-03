@@ -1,5 +1,5 @@
 <div class="login-container background">
-    <div class="container has-text-centered is-vcentered is-flex is-justify-content-center">
+    <div class="container has-text-centered is-vcentered is-flex is-justify-content-center" vocab="https://schema.org/">
         <div class="is-flex is-flex-direction-column gap">
             <label class="title box mt-4" for="query">Enter Query:</label>
 
@@ -24,20 +24,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let item of resultData">
-                                <td>
+                            <tr *ngFor="let item of resultData" typeof="Thing">
+                                <td property="url">
                                     <a [routerLink]="['/one-concept-page']"
                                         [queryParams]="{ uri: 'http://example.org/' + item.object }">
                                         {{ extractName(item.object) }}
                                     </a>
                                 </td>
                                 <td>
-                                    <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: 'http://example.org/' + item.property }">
-                                        {{ extractName(item.property) }}
-                                    </a>
+                                    <div typeof="Property">
+                                        <a [routerLink]="['/one-concept-page']"
+                                            [queryParams]="{ uri: 'http://example.org/' + item.property }"
+                                            property="name">
+
+                                            {{ extractName(item.property) }}
+                                        </a>
+                                    </div>
                                 </td>
                                 <td>
-                                    <a [routerLink]="['/one-concept-page']" [queryParams]="{ uri: 'http://example.org/' + item.value }">
+                                    <a [routerLink]="['/one-concept-page']"
+                                        [queryParams]="{ uri: 'http://example.org/' + item.value }" property="name">
                                         {{ extractName(item.value) }}
                                     </a>
                                 </td>
