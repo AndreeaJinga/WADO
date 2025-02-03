@@ -2,108 +2,248 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scholarly HTML</title>
-    <link rel="stylesheet" href="scholarly.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <script src="scholarly.js"></script>
-    <style>
-        pre code {
-            width: 900px;
-            background-color: #eee;
-            border: 1px solid #999;
-            display: block;
-            padding: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 </head>
 
-<body prefix="schema: http://schema.org">
-    <header>
-        <h1 class="title">Scholarly HTML</h1>
-    </header>
-
-    <div class="box" role="contentinfo">
-        <dl>
-            <dt>Authors</dt>
-            <dd>
-                Andreea Jinga
-                &amp;
-                Mihai - Alexandru Tomescu
-            </dd>
-        </dl>
-    </div>
-
-    <div typeof="sa:Abstract" id="abstract" role="doc-abstract">
-        <h2>Abstract</h2>
-        <p>
-            some text
-        </p>
-    </div>
-
-    <div id="introduction" role="doc-introduction">
-        <h2>Introduction</h2>
-        <p>
-            some text
-        </p>
-    </div>
-
-    <div id="Architecture">
-        <h2>Architecture of the web application</h2>
-
-        <div id="overview">
-            <h3>Overview</h3>
-            <p>
-                some text
-            </p>
-        </div>
-
-        <div id="components">
-            <h3>Components</h3>
-            <p>
-                some text
-            </p>
-        </div>
-
-        <div id="backend">
-            <h3>Backend</h3>
-            <div id="flask">
-                some text
-            </div>
-            <div id="apis">
-                some text
-                <div id="apis-auth">
-                    some text
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Scholarly HTML</h1>
+            <div class="columns">
+                <div class="column is-one-quarter">
+                    <aside class="menu">
+                        <p class="menu-label">API</p>
+                        <ul class="menu-list">
+                            <li><a href="#apis-auth">Auth</a></li>
+                            <li><a href="#apis-onto">Ontology</a></li>
+                        </ul>
+                        <p class="menu-label">Frontend</p>
+                        <ul class="menu-list">
+                            <li><a href="#ui">UI</a></li>
+                            <li><a href="#pages">Pages</a></li>
+                        </ul>
+                    </aside>
                 </div>
-                <div id="apis-onto">
-                    some text
+                <div class="column">
+                    <div id="abstract" class="box">
+                        <h3 class="title is-5">Abstract</h3>
+                        <p>some text</p>
+                    </div>
+                    <div id="introduction" class="box">
+                        <h3 class="title is-4">Introduction</h3>
+                        <p>some text</p>
+                    </div>
+                    <div id="architecture" class="box">
+                        <h3 class="title is-4">Architecture of the Web Application</h3>
+                        <p>
+                            In the next section we will describe an overview of the application, highlighting the
+                            architecture of the WADO App, detailing its key components and their interactions.
+                            The application follows a client-server model, where the frontend communicates with the
+                            backend via a REST API. This architectural design ensures <strong>scalability</strong>, as
+                            the server can be asynchronously deployed on multiple instances to handle more requests,
+                            <strong>maintainability</strong>, as the separation of concerns allows for easier updates
+                            and debugging, and <strong>flexibility</strong>, allowing seamless integration with cloud
+                            deployment and further enhancements. Additionally, it ensures <strong>performance</strong>,
+                            as the load can be balanced across multiple servers, and <strong>security</strong>, as
+                            the backend can be protected behind firewalls and other security measures.
+                        </p>
+                        <br />
+                        <p>
+                            The architecture consists of three main components:
+                        <ul class="content is-list">
+                            <li>
+                                <span class="has-text-primary">Frontend Component</span>
+                                <span>
+                                    - A modular, component-based structure, developed using Angular Framework, that
+                                    handles user interactions and displays data fetched from the backend. It includes
+                                    multiple pages such as authentication, data visualization, and SPARQL query
+                                    execution.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="has-text-primary">Backend Component</span>
+                                <span>
+                                    - A RESTful API that is responsible for processing user requests, querying the
+                                    RDF dataset, and returning structured responses in JSON format. Authentication
+                                    and access control mechanisms ensure secure data handling while the API is
+                                    developed using Flask Framework. The backend is responsible for processing user
+                                    requests, querying the RDF dataset, and returning structured responses in JSON
+                                    format.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="has-text-primary">OWL Ontology</span>
+                                <span>
+                                    - A RDF dataset that allows efficient querying and retrieval of data. The dataset
+                                    is queried using SPARQL, a query language for RDF datasets. The ontology is
+                                    in OWL format and provides a rich and structured representation of the data models
+                                    to provide comprehensive information for web development, including
+                                    programming languages, frameworks, licenses, and other related topics. To populate
+                                    the ontology we retrived data from the GitHub GraphQL API and the DBpedia SPARQL API
+                                    to ensure a rich and diverse dataset.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="has-text-primary">Database</span>
+                                <span>
+                                    - A PostgreSQL database is used to store user data securely. It is deployed on a
+                                    separate server to ensure data integrity, security, and performance. The database
+                                    handles user authentication, authorization, and stores user-related information
+                                    like email and password. The database is accessed by the backend to store and
+                                    retrieve user data.
+                                </span>
+                            </li>
+                        </ul>
+                        </p>
+
+                        <div id="general-diagram">
+                            <h4 class="title is-5">General Diagram</h4>
+                            <img src="media/architecture.drawio.svg" alt="Architecture Diagram"
+                                style="max-width: 100%; height: auto;" />
+                            <p>
+                                This diagram illustrates the overall architecture of the application, showing the
+                                interaction between the frontend, backend, the database and the ontology, and how
+                                user requests are processed, and how data flows through the system. It
+                                highlights how the user interacts with our responsive UI which ensures a seamless
+                                user experience. User requests are sent to the backend to be processed via our
+                                two APIs: the Auth API and the Ontology API. The Auth API handles user authentication
+                                and authorization, ensuring secure access to the application while interacting with the
+                                database. The Ontology API queries the RDF dataset to retrieve relevant information
+                                based on user requests.
+                            </p>
+                        </div>
+
+                        <div id="arch-frontend" class="box">
+                            <h3 class="title is-4">Frontend Component</h3>
+                            <p>
+                                The frontend is designed to be intuitive and user-friendly, making it easy for users to
+                                navigate through the application and access the features they need. The frontend
+                                communicates with the backend via two RESTful APIs to fetch data and update the UI
+                                dynamically.
+
+                                Regarding the data flow, the frontend sends requests to the backend, which processes the
+                                data and responds with relevant information. The frontend then dynamically updates the
+                                UI based on the received data. This ensures that the user interface is always up-to-date
+                                and responsive to user interactions.
+                            </p>
+
+                            <div class="box mt-3">
+                                <h4 class="title is-5">Used Technologies</h4>
+                                <p>
+                                    The frontend is developed using <strong>Angular Framework</strong>, a popular
+                                    frontend framework that provides a
+                                    modular and component-based structure for building scalable web applications. The UI
+                                    components are modular and reusable, allowing
+                                    for easy customization and maintenance. The UI includes components for user
+                                    authentication, data visualization and querying. The frontend communicates with the
+                                    backend via two RESTful APIs to fetch data and update the UI dynamically, all of
+                                    this being made by using the Angular HTTPClient module to send requests to the
+                                    backend and receive
+                                    responses. For development we used version 19.0.0 of Angular and version 12.0.0 of
+                                    Angular Material.
+                                </p>
+                                <p>
+                                    For styling the UI components we used <strong> Bulma CSS framework</strong>, which
+                                    provides a clean
+                                    and modern look to the application. The UI components are designed to be responsive
+                                    and accessible, ensuring a seamless user experience across different devices and
+                                    screen sizes. To have the lastest features available in Bulma Framework we used the
+                                    version 1.0.3.
+                                </p>
+                            </div>
+
+                            <div class="box">
+                                <h4 class="title is-5">UI Components</h4>
+                                <p>
+                                    The UI includes components for exposing the functionalities of both APIs provided by
+                                    the backend: the Auth API and the Ontology API. The Auth API components include
+                                    user authentication page and user registration page, while the Ontology API
+                                    components include SPARQL query execution page, framework data visualization page,
+                                    a page for visualizing instances for each class available in the ontology, and a
+                                    page for visualizing the properties of an instance available in the ontology.
+                                    Besides these pages, the UI also includes a home page and a navigation bar for
+                                    easy access to the different sections of the application.
+                                </p>
+                                <div id="arch-frontend-page-navbar" class="mt-3">
+                                    <h5 class="subtitle is-5">Navigation Bar Component</h5>
+                                    <figure class="image">
+                                        <img src="./pages/nav_bar.png" />
+                                    </figure>
+                                    <p>
+                                        The navigation bar is a component that is present on all pages of the
+                                        application. It provides users with easy access to the different sections of the
+                                        application, including the home page, authentication pages, and ontology pages.
+                                        The navigation bar is responsive
+                                        and adapts to different screen sizes to ensure a consistent user experience. When
+                                        the screen size is reduced, the navigation bar collapses into a hamburger menu.
+                                    </p>
+                                </div>
+                                <div id="arch-frontend-page-welcome" class="mt-3">
+                                    <h5 class="subtitle is-5">Welcome Page</h5>
+                                    <figure class="image">
+                                        <img src="./pages/welcome_page.png" />
+                                    </figure>
+                                    <p>
+                                        The welcome page is the first page users see when they access the
+                                        application. This page provides users with an overview of the application and
+                                        its capabilities. It includes a welcoming message and buttons to access all the
+                                        functionalities of the application. The page can be access by clicking on the
+                                        Wado Application logo in the navigation bar.
+                                    </p>
+                                </div>
+                                <div id="arch-frontend-page-register" class="mt-3">
+                                    <h5 class="subtitle is-5">Register Page</h5>
+                                    <figure class="image">
+                                        <img src="./pages/register_page.png" />
+                                    </figure>
+                                    <p>
+                                        The register page allows users to create an account by providing their
+                                        email and password. The page includes input fields for email and password, as
+                                        well as a button to submit the registration form. The email field is validated
+                                        to ensure it is in the correct format, and the password field is validated to
+                                        ensure it meets the required criteria. The page can be access from the welcome
+                                        page by clicking on the "Register" button or from the login page by clicking on
+                                        the "Register here" link.
+                                    </p>
+                                </div>
+                                <div id="arch-frontend-page-login" class="mt-3">
+                                    <h5 class="subtitle is-5">Login Page</h5>
+                                    <figure class="image">
+                                        <img src="./pages/login_page.png" />
+                                    </figure>
+                                    <p>
+                                        The login page allows users to authenticate themselves by providing their
+                                        email and password. The page includes input fields for email and password, as
+                                        well as a button to submit the login form. The page can be access from the
+                                        welcome page by
+                                        clicking on the "Login" button or from the navigation bar by clicking on the
+                                        "Login" button. Also, when accessing a page that requires authentication, the
+                                        user is redirected to the login page if he is not logged in already.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div id="ontology" class="box">
+                            <h3 class="title is-4">ontology</h3>
+                            <p>some text</p>
+                            <div id="ui" class="box">
+                                <h4 class="title is-5">UI</h4>
+                                <p>some text</p>
+                            </div>
+                            <div id="pages" class="box">
+                                <h4 class="title is-5">Pages</h4>
+                                <p>some text</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div id="frontend">
-            <h3>Frontend</h3>
-            some text
-            <div id="ui">
-                some text
-            </div>
-            <div id="pages">
-                some text
-            </div>
-            <div id="angular">
-                some text
-            </div>
-        </div>
-
-        <div id="Development and Deployment">
-            some text
-        </div>
-    </div>
-
-    <section id="ref">
-        <h3>References</h3>
-
     </section>
 </body>
 
