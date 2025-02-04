@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarly HTML</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Scholarly HTML</h1>
+            <div class="columns">
+                <div class="column is-one-quarter">
+                    <aside class="menu">
+                        <p class="menu-label"><a href="#abstract" class="has-text-black">Abstract</a></p>
+                        <p class="menu-label"><a href="#introduction" class="has-text-black">Introduction</a></p>
+                        <p class="menu-label">
+                            <a href="#architecture" class="has-text-black"> Architecture of the Application</a>
+                        </p>
+                        <ul class="menu-list">
+                            <li><a href="#arch-components">Main Components</a></li>
+                            <li><a href="#arch-general-diagram">General Diagram</a></li>
+                            <li><a href="#arch-c4-diagram">C4 Application Diagram</a></li>
+                            <li>
+                                <a href="#arch-frontend">Frontend</a>
+                                <ul class="menu-list">
+                                    <li><a href="#arch-frontend-technologies">Used Technologies</a></li>
+                                    <li><a href="#arch-frontend-components">UI Components</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#arch-backend">Backend</a>
+                                <ul class="menu-list">
+                                    <li><a href="#arch-backend-technologies">Used Technologies</a></li>
+                                    <li><a href="#arch-backend-apis">RESTful APIs</a></li>
+                                    <li><a href="#arch-backend-auth-api">Auth API</a></li>
+                                    <li><a href="#arch-backend-ontology-api">Ontology API</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#arch-github">Github Repository</a></li>
+
+                        </ul>
+                        <p class="menu-label">
+                            <a href="#ontology" class="has-text-black"> Ontology of the Application</a>
+                        </p>
+                        <ul class="menu-list">
+                            <li>
+                                <a href="#ontology-taxology">Taxology of the Ontology</a>
+                                <ul class="menu-list">
+                                    <li><a href="#ontology-taxology">Structure of the Ontology</a></li>
+                                    <li><a href="#ontology-graph-structure">Visualization of Ontology Taxology</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#ontology-population">Population of the Ontology</a></li>
+                            <li><a href="#ontology-populated">Final Ontology</a></li>
+                            <li><a href="#ontology-queries">Interesting Queries</a></li>
+                        </ul>
+                        <p class="menu-label"><a href="#rdfa" class="has-text-black">RDFa</a></p>
+                        <p class="menu-label"><a href="#userguide" class="has-text-black">User Guide Reference</a></p>
+                        <p class="menu-label"><a href="#references" class="has-text-black">References</a></p>
+                    </aside>
+                </div>
+                <div class="column">
+                    <div id="introduction" class="box">
+                        <h3 class="title is-4">Introduction</h3>
+                        <p>
+                            Welcome to the documentation of the WADO App, a web application designed to
+                            highlight the capabilities of the Semantic Web and demonstrate the power of
+                            ontologies in web development. The application provides users with a platform to
+                            explore programming languages, frameworks, and related topics in a structured and
+                            interactive manner.
+                        </p>
+                        <p>
+                            This documentation is structured to provide usage scenarios for the application,
+                            to help users understand how to use it. For more details regarding the pages or other
+                            features of the application, please refer to the Scholarly HTML, from the side menu.
+                        </p>
+                    </div>
+
+                    <div id="scenario1" class="box">
+                        <h3 class="title is-4">Scenario 1 - Account Creation</h3>
+                        <p>
+                            When you first visit the application, you will be greeted with the Welcome page. To
+                            access the full functionality of the application, you will need to create an account.
+                            To do this, click on the "Register" button in the top right corner of the page.
+
+                        <div class="box mt-3">
+                            <h4 class="title is-5">Welcome Page</h4>
+                            <img src="userguide/welcome.png" alt="welcome" style="max-width: 100%; height: auto;" />
+                            <h4 class="title is-5">Register Page</h4>
+                            <img src="userguide/register.png" alt="register" style="max-width: 100%; height: auto;" />
+                        </div>
+                        To create an account, the email must be a valid address and the password must be at least 8
+                        characters long. The email will be used only to sent result of your run queries when you request
+                        it. Once you have filled in the required information, click on the "Register"
+                        button to create your account. You will then be redirected to the login page, where you can
+                        enter your credentials to access the application.
+
+                        <div class="box mt-3">
+                            <h4 class="title is-5">Login Page</h4>
+                            <img src="userguide/login.png" alt="login" style="max-width: 100%; height: auto;" />
+                        </div>
+                        If you missed the registration step, you can always access the registration page by clicking on
+                        the
+                        "Register here" button on the login page.
+                        </p>
+                    </div>
+
+                    <div id="scenario2" class="box">
+                        <h3 class="title is-4">Scenario 2 - View all the instances of a class</h3>
+                        <p>
+                            Select "Instances" button from the navigation bar to enter in the dedicated page.
+                        <div class="box mt-3">
+                            <h4 class="title is-5">Navigation Bar</h4>
+                            <img src="pages/nav_bar.png" alt="nav" style="max-width: 100%; height: auto;" />
+                            <h4 class="title is-5">Instances Page</h4>
+                            <img src="pages/instance_page.png" alt="instances" style="max-width: 100%; height: auto;" />
+                        </div>
+                        Select the class you want to see the instances of from the radio box menu, for our example we
+                        will select "Library". Click on the "Submit" button to view the instances of the selected class.
+                        <div class="box mt-3">
+                            <h4 class="title is-5">Click the submit button</h4>
+                            <img src="userguide/instances_submit.png" alt="nav"
+                                style="max-width: 100%; height: auto;" />
+                        </div>
+                        In the bottom of the page, you will see the instances of the selected class. You can click on
+                        any instance to view its details.
+                        <div class="box mt-3">
+                            <h4 class="title is-5">Result after clicking on "Submit"</h4>
+                            <img src="userguide/instances_result.png" alt="nav"
+                                style="max-width: 100%; height: auto;" />
+                        </div>
+                        </p>
+                    </div>
+
+                    <div id="scenario3" class="box">
+                        <h3 class="title is-5">Scenario 3 - Running a SparQL Query</h3>
+                        <p>
+                            Select "SparQL" button from the navigation bar to enter in the dedicated page.
+                        <div class="box mt-3">
+                            <h4 class="title is-5">Navigation Bar</h4>
+                            <img src="pages/nav_bar.png" alt="nav" style="max-width: 100%; height: auto;" />
+                            <h4 class="title is-5">SparQL Page</h4>
+                            <img src="userguide/spar_page.png" alt="instances" style="max-width: 100%; height: auto;" />
+                        </div>
+                        Now enter a query at your choise. Remember to be logged in and that the query must be a valid
+                        SparQL query. For detailed
+                        syntax constrains please visit ScholarlyHTML. Once you have entered your query, click on the
+                        "Submit" button.
+                        </p>
+                        <div class="box mt-3">
+                            <h4 class="title is-5">
+                                Example of a SparQL query
+                            </h4>
+                            <img src="userguide/enter_q.png" alt="nav" style="max-width: 100%; height: auto;" />
+                        </div>
+                        After that you will see the result of your query in the bottom of the page.
+
+                        <div class="box mt-3">
+                            <h4 class="title is-5">
+                                Example of a SparQL query result
+                            </h4>
+                            <img src="pages/sparql_page.png" alt="nav" style="max-width: 100%; height: auto;" />
+                        </div>
+                        If you want to save the result, click on the "Send an Email" button. You will receive an email
+                        with the result of your query on the address of your account.
+                        <div class="box mt-3">
+                            <h4 class="title is-5">
+                                Press the "Send an Email" button
+                            </h4>
+                            <img src="userguide/sendEmail.png" alt="nav" style="max-width: 100%; height: auto;" />
+                            <h4 class="title is-5">
+                                Received email with the JSON response
+                            </h4>
+                            <img src="userguide/email.png" alt="nav" style="max-width: 100%; height: auto;" />
+                        </div>
+                    </div>
+                </div>
+    </section>
+
+</body>
+
+</html>
