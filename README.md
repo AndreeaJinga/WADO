@@ -33,7 +33,9 @@ The backend uses Flask, rdflib, and JWT authentication, ensuring secure access t
 
 <!-- Screenshots -->
 ### :camera: Videos
-[![WadoApp Presentation]](Link](https://www.youtube.com/watch?v=eWXzYP9_s4Q))
+[WadoApp Presentation](https://youtu.be/eWXzYP9_s4Q)
+[Wado Ontology Video](https://youtu.be/Y4TuQuMhg74)
+
 
 
 <div align="center"> 
