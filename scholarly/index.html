@@ -58,6 +58,7 @@
                             <li><a href="#ontology-populated">Final Ontology</a></li>
                             <li><a href="#ontology-queries">Interesting Queries</a></li>
                         </ul>
+                        <p class="menu-label"><a href="#rdfa" class="has-text-black">RDFa</a></p>
                         <p class="menu-label"><a href="#references" class="has-text-black">References</a></p>
                     </aside>
                 </div>
@@ -71,6 +72,7 @@
                             architecture, components, and functionalities.
                         </p>
                     </div>
+
                     <div id="introduction" class="box">
                         <h3 class="title is-4">Introduction</h3>
                         <p>
@@ -88,6 +90,7 @@
                             with the necessary information.
                         </p>
                     </div>
+
                     <div id="architecture" class="box">
                         <h3 class="title is-4">Architecture of the Web Application</h3>
                         <p>
@@ -787,6 +790,7 @@
                             </ul>
                         </div>
                     </div>
+
                     <div id="ontology" class="box">
                         <h3 class="title is-4">Ontology of the Application</h3>
 
@@ -1180,6 +1184,46 @@
                         </div>
                     </div>
 
+                    <div id="rdfa" class="box">
+                        <h3 class="title is-5">RDFa</h3>
+                        <p>
+                            RDFa (Resource Description Framework in Attributes) is a W3C recommendation that allows
+                            developers to embed structured data in HTML documents. RDFa provides a way to describe the
+                            content of web pages using metadata that can be easily processed by machines. RDFa is
+                            designed to be human-readable and machine-readable, making it ideal for creating
+                            semantically-rich web pages that can be easily indexed and searched by search engines.
+
+                            Regarding inserted RDFa in Wado Application we used the vocabulary from schema.org. The
+                            vocabulary is used to describe the content of the web pages, including the type of content,
+                            properties and values. The RDFa markup is added to the HTML code of the web pages, allowing
+                            search engines to understand the content and provide relevant search results to users.
+                        </p>
+                        <p>
+                            As domain-specific RDFa we focused on the following types from schema.org vocabulary:
+                            <a href="https://schema.org/SoftwareApplication"
+                                class="has-text-link">SoftwareApplication</a>,
+                            and
+                            <a href="https://schema.org/SoftwareSourceCode"
+                                class="has-text-link">SoftwareSourceCode</a>.
+                            From these types we used the following properties: applicationCategory, programmingLanguage.
+                            As more general types we used concepts from schema.org vocabulary like
+                            <a href="https://schema.org/Thing" class="has-text-link">Thing</a>,
+                            with the properties name and url,
+                            <a href="https://schema.org/PropertyValue" class="has-text-link">PropertyValue</a>,
+                            with the properties name and value.
+                        </p>
+
+                        <div id="rdfa-example">
+                            <div class="box mt-3">
+                                <h4 class="title is-5">Examples from the Web Application</h4>
+                                <img src="media/rdfa1.png" alt="Examples from the Web Application"
+                                    style="max-width: 100%; height: auto;" />
+                                <img src="media/rdfa2.png" alt="Examples from the Web Application"
+                                    style="max-width: 100%; height: auto;" />
+                            </div>
+                        </div>
+                    </div>
+
                     <div id="references" class="box">
                         <h3 class="title is-4">References</h3>
                         <p>
@@ -1187,7 +1231,8 @@
                             this documentation:
                         <ul class="content">
                             <li><a href="https://shields.io" class="has-text-link">Shields.io</a></li>
-                            <li><a href="https://github.com/ikatyang/emoji-cheat-sheet" class="has-text-link">Emoji Cheat Sheet</a></li>
+                            <li><a href="https://github.com/ikatyang/emoji-cheat-sheet" class="has-text-link">Emoji
+                                    Cheat Sheet</a></li>
                             <li><a href="https://github.com/othneildrew/Best-README-Template"
                                     class="has-text-link">Readme Template</a></li>
                         </ul>
@@ -1195,6 +1240,9 @@
                     </div>
                 </div>
     </section>
+
+    <button class="floating-button" onclick="scrollToAbstract()">↑</button>
+
 </body>
 
 </html>
