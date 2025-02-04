@@ -31,6 +31,10 @@ The Angular frontend allows users to:
 
 The backend uses Flask, rdflib, and JWT authentication, ensuring secure access to ontology data. The frontend is fully responsive and deployed on Heroku, supporting semantic web technologies to create a knowledge-driven user experience. 🚀
 
+[WadoProject App](https://wado-front-32b84554e810.herokuapp.com/welcome)
+[Scholarly](https://tomihai15.github.io/scholarly/)
+[User Guide](https://tomihai15.github.io/scholarly/userguide.html)
+
 <!-- Screenshots -->
 ### :camera: Videos
 [WadoApp Presentation](https://youtu.be/eWXzYP9_s4Q)
