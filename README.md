@@ -33,14 +33,8 @@ The backend uses Flask, rdflib, and JWT authentication, ensuring secure access t
 
 <!-- Screenshots -->
 ### :camera: Videos
-<iframe width="560" height="315" src="https://youtu.be/eWXzYP9_s4Q" 
-        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-</iframe>
-<iframe width="560" height="315" src="[https://youtu.be/eWXzYP9_s4Q](https://youtu.be/Y4TuQuMhg74)" 
-        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-</iframe>
+[![WadoApp Presentation]](Link](https://www.youtube.com/watch?v=eWXzYP9_s4Q))
+
 
 <div align="center"> 
   <!-- <img src="https://placehold.co/600x400?text=Your+Screenshot+here" alt="screenshot" /> -->
